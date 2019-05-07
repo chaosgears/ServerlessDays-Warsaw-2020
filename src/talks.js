@@ -132,4 +132,13 @@ module.exports = [
     abstract: `Connecting LEGO play experience with millions requires an innovative platform. This fueled the cloud migration of the legacy eCommerce application. This talk will walk you through the principles, the approach, the learnings and of course the serverless technologies that made the vision a reality.`,
     workshop: false
   },
+  {
+    key: 'bret-mc-gowen',
+    bio: `Bret is a Developer Advocate for Serverless on the Google Cloud Platform team at Google, focusing on serverless products like Google Cloud Functions, App Engine, Firebase, machine learning APIs, and more. He's currently an aspiring Node.js developer. Prior to Google, Bret worked as a software engineer in the cloud industry at Rackspace. He's often on the running trail, volleyball court or kickball field. Bret earned a bachelor’s degree in computer science from Texas A&M University.`,
+    photoUrl: 'bret-mcgowen.jpg',
+    title: 'Serverless your containers with Knative plus Cloud Run',
+    speaker: 'Bret McGowen',
+    abstract: `Even if you don't see them, containers are what's running your code in most serverless platforms. By using containers directly, you can write serverless apps in almost any language and bundle any runtimes or binaries. Learn how Knative, the open source project from Google, Pivotal, Red Hat and more, provides an industry standard way to build serverless platforms and run your serverless apps on top of Kubernetes. Knative lets you tune scaling parameters, run on hardware with GPUs or multi-core processors, and more.`,
+    workshop: false,
+  }
 ];
