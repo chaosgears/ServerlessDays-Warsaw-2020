@@ -416,7 +416,7 @@ nav.top-nav .menu a.highlight:active {
 
 .section.speakers .list > div {
   /*flex: 1 0 auto;*/
-  flex: 1 0 33%;
+  flex: 1 0 20%;
   align-items: center;
   padding: 20px 0;
 }
@@ -427,6 +427,10 @@ nav.top-nav .menu a.highlight:active {
   text-align: center; /* for text elements */
   align-items: center; /* for flex elements */
   padding: 0 20px;
+}
+
+.section.speakers .list > div > .bio a {
+  text-decoration: none;
 }
 
 .section.speakers .list > div > .bio img {
