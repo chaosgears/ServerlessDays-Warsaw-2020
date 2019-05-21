@@ -57,13 +57,12 @@ module.exports = [
     workshop: false
   },
   {
-    key: "andrea-tosato",
-    bio: `Andrea is a .NET developer for 9 years.
-    He is involved in backend development in C#. He is passionate about Azure and its services, and he immediately developed and deepened it from the first Azure Functions versions. He works in 4ward and is a senior developer. In 2017 he is the co-founder of CloudGenVerona, in January 2019 he becomes Microsoft MVP in the Azure category.`,
-    photoUrl: "andrea-tosato.jpg",
-    title: "Azure Functions for ML developers",
-    speaker: "Andrea Tosato",
-    abstract: `Why create a whole application to run Machine Learning models? I will show you how to use Microsoft's CustomVision service on an Azure Functions written entirely in python!`,
+    key: "nitzan-shapira",
+    bio: `A software engineer with over 12 years of experience in programming, machine learning, cyber-security, and reverse engineering. During the last year, I am working on Epsagon, being a co-founder and the CEO. Epsagon is focused on bringing observability to serverless cloud applications, using distributed tracing and AI technologies, tackling the unique challenges in such environments. Apart from co-founding Epsagon, I enjoy playing the piano, I am a traveling enthusiast, an experienced chess player, and addicted to sports.`,
+    photoUrl: "nitzan-shapira.jpg",
+    title: "Distributed Tracing in Serverless Systems",
+    speaker: "Nitzan Shapira",
+    abstract: `Observability of serverless, distributed systems is complex since each service is separated and from the others. Distributed tracing is key to understanding such systems. In serverless, there are unique challenges and opportunities which make distributed tracing powerful for gaining observability.`,
     workshop: false
   },
   {
