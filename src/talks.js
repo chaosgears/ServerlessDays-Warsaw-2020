@@ -71,11 +71,11 @@ He's the creator of <a target=“_blank” href="https://socket.io">socket.io</a
     workshop: false
   },
   {
-    key: "nitzan-shapira",
-    bio: `A software engineer with over 12 years of experience in programming, machine learning, cyber-security, and reverse engineering. During the last year, I am working on Epsagon, being a co-founder and the CEO. Epsagon is focused on bringing observability to serverless cloud applications, using distributed tracing and AI technologies, tackling the unique challenges in such environments. Apart from co-founding Epsagon, I enjoy playing the piano, I am a traveling enthusiast, an experienced chess player, and addicted to sports.`,
-    photoUrl: "nitzan-shapira.jpg",
+    key: "ran-ribenzaft",
+    bio: `I’m a passionate developer, with vast experience in network, infrastructure, and cyber-security. Constantly chasing new technologies - as the current one is Serverless. Love sharing open source tools to make everyone lives easier :) In my current role, I’m the co-founder and CTO at Epsagon - monitoring for serverless applications. I love swimming, traveling around the world, and taking breathtaking pictures.`,
+    photoUrl: "ran-ribenzaft.jpg",
     title: "Distributed Tracing in Serverless Systems",
-    speaker: "Nitzan Shapira",
+    speaker: "Ran Ribenzaft",
     abstract: `Observability of serverless, distributed systems is complex since each service is separated and from the others. Distributed tracing is key to understanding such systems. In serverless, there are unique challenges and opportunities which make distributed tracing powerful for gaining observability.`,
     workshop: false
   },
