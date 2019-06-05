@@ -16,6 +16,20 @@ module.exports = [
     workshop: false
   },
   {
+    key: "guillermo-rauch",
+    bio: `
+    Guillermo is the founder of ZEIT, <strong>co-creator of <a target=“_blank” href="https://now.sh">Now</a> and Next.js</strong>, and former CTO and co-founder of LearnBoost and Cloudup, acquired by <a target=“_blank” href="https://wordpress.com">wordpress.com</a> in 2013.<br /> He's a former mentor of an Open Source Engineering class organized and pioneered by Stanford, with students from Harvard, MIT, Carnegie Mellon, UPenn, Columbia and others.<br /><br />
+
+He's the creator of <a target=“_blank” href="https://socket.io">socket.io</a>, one of the most popular JavaScript projects on GitHub, and of the first MongoDB ORM for Node.js: MongooseJS. Before that he was a core developer of the MooTools JavaScript framework. He's the author of "Smashing Node.js" published by Wiley in 2012, best-selling book about Node.js on Amazon in multiple programming categories.
+`,
+    photoUrl: "guillermo-rauch.jpg",
+    title: "From Servers to Serverless",
+    speaker: "Guillermo Rauch",
+    abstract: `ZEIT Now enables deploying any serverless application instantly. With just one command ('now' or 'git push') you get a URL back with your working deployment, which takes advantage of a global CDN network that automatically serves your static assets (such as a static frontend) and invokes lambdas on-demand. Deploying is faster. The resulting websites and applications load faster. Failures are minimized or flat-out disappear. No monitoring is required. It all sounds like heaven... except serverless is different. This talk will explore how we are helping developers get all these benefits and migrate from a serverful world without a hassle.
+`,
+    workshop: false
+  },
+  {
     key: "andreas-grimm",
     bio: `Andreas is an expert in Identity & Access Management and a proponent of serviceful, serverless architectures.
     Being aware of the fact that having a shared understanding with the business is even more important than technical solutions, he's into aproaches like Domain Driven Design and EventStorming.
@@ -57,11 +71,11 @@ module.exports = [
     workshop: false
   },
   {
-    key: "nitzan-shapira",
-    bio: `A software engineer with over 12 years of experience in programming, machine learning, cyber-security, and reverse engineering. During the last year, I am working on Epsagon, being a co-founder and the CEO. Epsagon is focused on bringing observability to serverless cloud applications, using distributed tracing and AI technologies, tackling the unique challenges in such environments. Apart from co-founding Epsagon, I enjoy playing the piano, I am a traveling enthusiast, an experienced chess player, and addicted to sports.`,
-    photoUrl: "nitzan-shapira.jpg",
+    key: "ran-ribenzaft",
+    bio: `I’m a passionate developer, with vast experience in network, infrastructure, and cyber-security. Constantly chasing new technologies - as the current one is Serverless. Love sharing open source tools to make everyone lives easier :) In my current role, I’m the co-founder and CTO at Epsagon - monitoring for serverless applications. I love swimming, traveling around the world, and taking breathtaking pictures.`,
+    photoUrl: "ran-ribenzaft.jpg",
     title: "Distributed Tracing in Serverless Systems",
-    speaker: "Nitzan Shapira",
+    speaker: "Ran Ribenzaft",
     abstract: `Observability of serverless, distributed systems is complex since each service is separated and from the others. Distributed tracing is key to understanding such systems. In serverless, there are unique challenges and opportunities which make distributed tracing powerful for gaining observability.`,
     workshop: false
   },
@@ -110,7 +124,7 @@ module.exports = [
     photoUrl: "victoria-bernard.jpg",
     title: "Dev life hacks using serverless",
     speaker: "Victoria Bernard",
-    abstract: `Serverless doesn’t just let us hack our web apps. We can also hack our everyday tools. As developers, we are sometimes most creative in finding those nits of inefficiencies on our own dev environments. Let’s walk through some of my favorite hacks for getting serverless to ease your developer life.`,
+    abstract: `Serverless lets us build web apps, but at what cost to the developer experience? Let's look at serverless beyond a cost-efficient, super fast infrastructure and more as a tool we can't live without. In this talk, I will walk through a few of my favorite hacks for getting serverless to deliver ergonomics to developers...`,
     workshop: false
   },
   {
