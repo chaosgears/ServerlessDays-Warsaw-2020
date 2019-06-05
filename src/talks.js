@@ -16,6 +16,20 @@ module.exports = [
     workshop: false
   },
   {
+    key: "guillermo-rauch",
+    bio: `
+    Guillermo is the founder of ZEIT, <strong>co-creator of <a target=“_blank” href="https://now.sh">Now</a> and Next.js</strong>, and former CTO and co-founder of LearnBoost and Cloudup, acquired by <a target=“_blank” href="https://wordpress.com">wordpress.com</a> in 2013.<br /> He's a former mentor of an Open Source Engineering class organized and pioneered by Stanford, with students from Harvard, MIT, Carnegie Mellon, UPenn, Columbia and others.<br /><br />
+
+He's the creator of <a target=“_blank” href="https://socket.io">socket.io</a>, one of the most popular JavaScript projects on GitHub, and of the first MongoDB ORM for Node.js: MongooseJS. Before that he was a core developer of the MooTools JavaScript framework. He's the author of "Smashing Node.js" published by Wiley in 2012, best-selling book about Node.js on Amazon in multiple programming categories.
+`,
+    photoUrl: "guillermo-rauch.jpg",
+    title: "From Servers to Serverless",
+    speaker: "Guillermo Rauch",
+    abstract: `ZEIT Now enables deploying any serverless application instantly. With just one command ('now' or 'git push') you get a URL back with your working deployment, which takes advantage of a global CDN network that automatically serves your static assets (such as a static frontend) and invokes lambdas on-demand. Deploying is faster. The resulting websites and applications load faster. Failures are minimized or flat-out disappear. No monitoring is required. It all sounds like heaven... except serverless is different. This talk will explore how we are helping developers get all these benefits and migrate from a serverful world without a hassle.
+`,
+    workshop: false
+  },
+  {
     key: "andreas-grimm",
     bio: `Andreas is an expert in Identity & Access Management and a proponent of serviceful, serverless architectures.
     Being aware of the fact that having a shared understanding with the business is even more important than technical solutions, he's into aproaches like Domain Driven Design and EventStorming.
