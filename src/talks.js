@@ -124,7 +124,7 @@ He's the creator of <a target=“_blank” href="https://socket.io">socket.io</a
     photoUrl: "victoria-bernard.jpg",
     title: "Dev life hacks using serverless",
     speaker: "Victoria Bernard",
-    abstract: `Serverless lets us build web apps, but at what cost to the developer experience? Let's look at serverless beyond a cost-efficient, super fast infrastructure and more as a tool we can't live without. In this talk, I will walk through a few of my favorite hacks for getting serverless to deliver ergonomics to developers...`,
+    abstract: `Serverless lets us build web apps, but at what cost to the developer experience? Let's look at serverless beyond a cost-efficient, super fast infrastructure and more as a tool we can't live without. In this talk, I will walk through a few of my favorite hacks for getting serverless to deliver ergonomics to developers.`,
     workshop: false
   },
   {
