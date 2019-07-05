@@ -1,3 +1,3 @@
-# Milan
+# Warsaw
 
-ServerlessDays Milan Website
+ServerlessDays Warsaw Website

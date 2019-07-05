@@ -1,19 +1,20 @@
 {
-  "name": "london",
+  "name": "warsaw",
   "version": "1.0.0",
-  "description": "ServerlessDays London Website",
+  "description": "ServerlessDays Warsaw Website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ServerlessDays/London.git"
+    "url": "git+https://github.com/chaosgears/ServerlessDays-Warsaw-2020.git"
   },
   "keywords": [
     "serverless",
     "serverlessdays",
-    "london"
+    "london",
+    "warsaw"
   ],
   "author": "A Stanley",
   "license": "MIT",
@@ -22,10 +23,10 @@
   },
   "homepage": "https://github.com/ServerlessDays/London#readme",
   "devDependencies": {
-    "browser-sync": "^2.23.3",
+    "browser-sync": "^2.26.7",
     "connect-history-api-fallback": "^1.5.0",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-file-include": "^2.0.1",
     "gulp-htmlmin": "^4.0.0",
     "gulp-minify-inline": "^1.0.0",

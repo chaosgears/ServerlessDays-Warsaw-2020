@@ -9,12 +9,28 @@ var browserSync = require("browser-sync").create();
 var del = require("del");
 var plumber = require("gulp-plumber");
 var fs = require("fs");
+var localConfig = {
+  buildSrc: './src/**/*',
+  getAwsConf: function (environment) {
+    var conf = require('../../config/aws');
+    if (!conf[environment]) {
+      throw 'No aws conf for env: ' + environment;
+    }
+    if (!conf[environment + 'Headers']) {
+      throw 'No aws headers for env: ' + environment;
+    }
+    return {
+      keys: conf[environment],
+      headers: conf[environment + 'Headers']
+    };
+  }
+};
 
-gulp.task("clean", function() {
+gulp.task("clean", function () {
   return del(["dist/**", "src/html-compiled/**"]);
 });
 
-gulp.task("fileinclude", ["generateTalks"], function(callback) {
+gulp.task("fileinclude", ["generateTalks"], function (callback) {
   return gulp
     .src(["src/html/*.html"])
     .pipe(plumber())
@@ -28,21 +44,24 @@ gulp.task("fileinclude", ["generateTalks"], function(callback) {
     .pipe(browserSync.stream());
 });
 
-gulp.task("dev-assets", ["clean"], function(callback) {
+gulp.task("dev-assets", ["clean"], function (callback) {
   return gulp
     .src(["src/imgs/**/*.*", "src/html/*.css"])
     .pipe(gulp.dest("src/html-compiled/"));
 });
 
-gulp.task("minify", ["fileinclude"], function() {
+gulp.task("minify", ["fileinclude"], function () {
   return gulp
     .src("src/html-compiled/**/*.html")
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true
+    }))
     .pipe(minifyInline())
     .pipe(gulp.dest("dist"));
 });
 
-gulp.task("copy", function() {
+gulp.task("copy", function () {
   return gulp
     .src([
       "src/_redirects",
@@ -61,7 +80,15 @@ gulp.task("generateTalks", ["dev-assets"], () => {
     encoding: "utf-8",
   });
   talks.forEach(talk => {
-    const { key, photoUrl, title, speaker, abstract, bio, workshop } = talk;
+    const {
+      key,
+      photoUrl,
+      title,
+      speaker,
+      abstract,
+      bio,
+      workshop
+    } = talk;
     const content = template
       .replace(/%photoUrl%/gi, photoUrl)
       .replace(/%title%/gi, title)
@@ -69,7 +96,7 @@ gulp.task("generateTalks", ["dev-assets"], () => {
       .replace(/%bio%/gi, bio)
       .replace(/%abstract%/gi, abstract.replace(/\n/g, "<br/><br/>"))
       .replace(/%key%/gi, key)
-      .replace(/%session_type%/, (workshop?"Workshop":"Talk"));
+      .replace(/%session_type%/, (workshop ? "Workshop" : "Talk"));
     fs.writeFileSync(`src/html/talk-${key}.html`, content, {
       encoding: "utf-8",
     });
@@ -80,7 +107,7 @@ gulp.task("build", ["fileinclude", "minify", "copy"]);
 
 gulp.task("include-watch", ["fileinclude"], browserSync.reload);
 
-gulp.task("watch", ["fileinclude", "browser-sync"], function() {
+gulp.task("watch", ["fileinclude", "browser-sync"], function () {
   "use strict";
   gulp.watch("./src/html/**/*.html", ["include-watch"]);
   gulp.watch("./src/html/**/*.css", ["include-watch"]);
@@ -88,7 +115,7 @@ gulp.task("watch", ["fileinclude", "browser-sync"], function() {
   gulp.watch("./src/*.js", ["include-watch"]);
 });
 
-gulp.task("watch-dist", ["build"], function() {
+gulp.task("watch-dist", ["build"], function () {
   "use strict";
   gulp.watch("./dist/*.html", browserSync.reload);
 });
@@ -104,22 +131,38 @@ function simpleURLRewrite(req, res, next) {
 }
 
 // Static server
-gulp.task("browser-sync", ["fileinclude"], function() {
-  browserSync.init({
-    server: {
-      baseDir: "./src/html-compiled/",
-    },
-    middleware: simpleURLRewrite,
-  });
-});
+// gulp.task("browser-sync", ["fileinclude"], function() {
+//   browserSync.init({
+//     server: {
+//       baseDir: "./src/html-compiled/",
+//     },
+//     middleware: simpleURLRewrite,
+//   });
+// });
 
-gulp.task("browser-sync-dist", ["build"], function() {
-  browserSync.init({
-    server: {
-      baseDir: "./dist/",
-    },
-    middleware: simpleURLRewrite,
-  });
+// gulp.task("browser-sync-dist", ["build"], function() {
+//   browserSync.init({
+//     server: {
+//       baseDir: "./dist/",
+//     },
+//     middleware: simpleURLRewrite,
+//   });
+// });
+
+var gulp = require('gulp'),
+  awspublish = require('gulp-awspublish');
+
+gulp.task('s3:production', ['build:production'], function () {
+  var awsConf = localConfig.getAwsConf('production');
+  var publisher = awspublish.create(awsConf.keys);
+  return gulp.src(localConfig.buildSrc)
+    .pipe(awspublish.gzip({
+      ext: ''
+    }))
+    .pipe(publisher.publish(awsConf.headers))
+    .pipe(publisher.cache())
+    .pipe(publisher.sync())
+    .pipe(awspublish.reporter());
 });
 
 
