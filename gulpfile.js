@@ -131,23 +131,23 @@ function simpleURLRewrite(req, res, next) {
 }
 
 // Static server
-// gulp.task("browser-sync", ["fileinclude"], function() {
-//   browserSync.init({
-//     server: {
-//       baseDir: "./src/html-compiled/",
-//     },
-//     middleware: simpleURLRewrite,
-//   });
-// });
+gulp.task("browser-sync", ["fileinclude"], function() {
+  browserSync.init({
+    server: {
+      baseDir: "./src/html-compiled/",
+    },
+    middleware: simpleURLRewrite,
+  });
+});
 
-// gulp.task("browser-sync-dist", ["build"], function() {
-//   browserSync.init({
-//     server: {
-//       baseDir: "./dist/",
-//     },
-//     middleware: simpleURLRewrite,
-//   });
-// });
+gulp.task("browser-sync-dist", ["build"], function() {
+  browserSync.init({
+    server: {
+      baseDir: "./dist/",
+    },
+    middleware: simpleURLRewrite,
+  });
+});
 
 var gulp = require('gulp'),
   awspublish = require('gulp-awspublish');
