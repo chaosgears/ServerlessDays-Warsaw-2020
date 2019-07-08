@@ -1,0 +1,29 @@
+//File should be placed in ../config/
+exports.production = {
+  region: "eu-west-1",
+  params: {
+    Bucket: ""
+  },
+  credentials: {
+    accessKeyId: "",
+    secretAccessKey: "",
+    signatureVersion: "v3"
+  }
+};
+exports.dev = {
+  region: "eu-west-1",
+  params: {
+    Bucket: ""
+  },
+  credentials: {
+    accessKeyId: "",
+    secretAccessKey: "",
+    signatureVersion: "v3"
+  }
+};
+exports.devHeaders = {
+  "Cache-Control": "max-age=315360000, no-transform, public"
+};
+exports.productionHeaders = {
+  "Cache-Control": "max-age=315360000, no-transform, public"
+};
