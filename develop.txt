@@ -1,0 +1,17 @@
+To build and run project localy run in project folder:
+
+npm install
+gulp browser-sync
+
+or
+
+browser-sync-dist
+
+Project is served automaticly on http://localhost:3000/
+
+To deploy project to S3:
+- copy ./aws.js.example to ../config/aws.js 
+- edit the configuration file and past bucket name and credentials for target accounts (dev/production)
+- for production, edit the headers with attention
+- run gulp s3:production or gulp s3:dev depending on env
+project is compiled to start from https://<bucket_name>.s3.eu-central-1.amazonaws.com/html-compiled/index.html
