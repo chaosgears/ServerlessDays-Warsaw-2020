@@ -1,0 +1,134 @@
+Resources:
+  # Cognito - Identity
+  CognitoIdentityPool:
+    Type: AWS::Cognito::IdentityPool
+    Properties:
+      IdentityPoolName: ${self:custom.app}_${self:custom.service_acronym}_${self:custom.stage}_identity_pool
+      AllowUnauthenticatedIdentities: false
+      CognitoIdentityProviders:
+        - ClientId:
+            Ref: CognitoUserPoolClient
+          ProviderName:
+            Fn::GetAtt: [CognitoUserPool, ProviderName]
+
+  UsersGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: users
+      Description: Users group
+      UserPoolId:
+        Ref: CognitoUserPool
+      RoleArn: arn:aws:iam::629465793993:role/flowcontrol-clientdataprovid-RoleForClientDownload-IAYHPSSQU56U
+  AdminsGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: admins
+      Description: Admins group for Passus
+      UserPoolId:
+        Ref: CognitoUserPool
+      RoleArn: arn:aws:iam::629465793993:role/flowcontrol-clientdataprovider-RoleForAdminUpdate-POVZ43M1YEEY
+  UserAdminsGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: user-admins
+      Description: Admins group for users
+      UserPoolId:
+        Ref: CognitoUserPool
+      RoleArn: arn:aws:iam::629465793993:role/flowcontrol-clientdataprovid-RoleForClientDownload-IAYHPSSQU56U
+
+  # Cognito roles
+  CognitoIdentityPoolRoles:
+    Type: AWS::Cognito::IdentityPoolRoleAttachment
+    Properties:
+      IdentityPoolId:
+        Ref: CognitoIdentityPool
+      Roles:
+        authenticated:
+          Fn::GetAtt: [CognitoAuthRole, Arn]
+        unauthenticated:
+          Fn::GetAtt: [CognitoUnauthRole, Arn]
+
+  # IAM role used for authenticated users
+  CognitoAuthRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: ${self:custom.app}_${self:custom.service_acronym}_${self:custom.stage}_auth_role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Federated: "cognito-identity.amazonaws.com"
+            Action:
+              - "sts:AssumeRoleWithWebIdentity"
+            Condition:
+              StringEquals:
+                "cognito-identity.amazonaws.com:aud":
+                  Ref: CognitoIdentityPool
+              "ForAnyValue:StringLike":
+                "cognito-identity.amazonaws.com:amr": authenticated
+      Policies:
+        - PolicyName: ${self:custom.app}_${self:custom.service_acronym}_${self:custom.stage}_AuthorizedPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "mobileanalytics:PutEvents"
+                  - "cognito-sync:*"
+                  - "cognito-identity:*"
+                Resource: "*"
+
+              # Allow users to invoke our API
+              - Effect: "Allow"
+                Action:
+                  - "execute-api:Invoke"
+                Resource:
+                  Fn::Join:
+                    - ""
+                    - - "arn:aws:execute-api:"
+                      - Ref: AWS::Region
+                      - ":"
+                      - Ref: AWS::AccountId
+                      - ":"
+                      - Ref: ApiGatewayRestApi
+                      - "/*"
+
+  #IAM role to unautheticated user
+  CognitoUnauthRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: ${self:custom.app}_${self:custom.service_acronym}_${self:custom.stage}_UnauthRole
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Federated: "cognito-identity.amazonaws.com"
+            Action:
+              - "sts:AssumeRoleWithWebIdentity"
+            Condition:
+              StringEquals:
+                "cognito-identity.amazonaws.com:aud":
+                  Ref: CognitoIdentityPool
+              "ForAnyValue:StringLike":
+                "cognito-identity.amazonaws.com:amr": unauthenticated
+      Policies:
+        - PolicyName: ${self:custom.app}_${self:custom.service_acronym}_${self:custom.stage}_UnauthorizedPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "mobileanalytics:PutEvents"
+                  - "cognito-sync:*"
+                  - "cognito-identity:*"
+                Resource: "*"
+
+# Print out the Id of the Identity Pool that is created
+Outputs:
+  IdentityPoolId:
+    Value:
+      Ref: CognitoIdentityPool
