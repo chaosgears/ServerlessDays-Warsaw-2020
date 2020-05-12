@@ -23,25 +23,48 @@ if "EMAIL" in env:
 if "EMAIL1" in env:
     emails.append(os.environ["EMAIL1"])  
 
+with open('html_file.html', 'r') as f:
+    html_string = f.read()
+
+send_template = {
+  "Template": {
+    "TemplateName": "MyTemplate",
+    "SubjectPart": "Greetings, {{name}}!",
+    "TextPart": "Dear {{name}},\r\n.",
+    #"HtmlPart": "<h1>Hello {{name}}</h1><p>Your favorite animal is {{favoriteanimal}}.</p>"
+    "HtmlPart": html_string
+  }
+}
+
+def create_template():
+    response = ses.create_template(
+        Template = send_template
+    )
+
+    print(response)
+
 def send_ses(email, token):
     link = 'http://example_link.s3-website.eu-central-1.amazonaws.com/guest_registration?uuid=' + token
     try:
-        result = ses.send_email(
+        result = ses.send_templated_email(
+            Source=emails[0],
             Destination={
                 'ToAddresses': [email]
             },
-            ReplyToAddresses=[emails[0]],
-            Message={
-                'Subject': {  
-                    'Data': "ServerlessDays Warsaw 2020 - Confirmation email"
-                },
-                'Body': {
-                    'Text': {
-                        'Data': ": %s" % link
-                    }
-                }
-            },
-            Source=emails[0]
+            # ReplyToAddresses=[emails[0]],
+            # Message={
+            #     'Subject': {  
+            #         'Data': "ServerlessDays Warsaw 2020 - Confirmation email"
+            #     },
+            #     'Body': {
+            #         'Text': {
+            #             'Data': ": %s" % link
+            #         }
+            #     }
+            # },
+            
+            Template='TEMPLATE_NAME',
+            TemplateData='{ \"name\":\"Diana\" }'      
         )
     except ClientError as e:
         message = e.response['Error']['Message']
@@ -99,7 +122,12 @@ def handler(event, context):
     technical_interests = event['json']['technical_interests']
 
     response = put_item(first_name, last_name, position, address, email, organization_name, business_interests, \
-                                                         technical_interests)      
+                                                         technical_interests) 
+
+    if response["statusCode"] == 200:
+        guest_registration_id = response["output"]
+        response = send_ses(email, guest_registration_id)     
+
 
     response = {
         "statusCode": response["statusCode"],
