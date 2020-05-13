@@ -3,4 +3,87 @@ title: Serverless Days 2020
 version: v1
 baseUri: ????????????
 
- 
+/registration:
+    description: |
+        A collection of guest registration
+    post:
+        description: |
+            Add a new guest registration and send him a confirmation email   
+            with a link through which the registration will be deleted.
+        body:
+            application/json:
+                properties:
+                    firstName:
+                        description: First name
+                        type: string
+                        example: "Jan"
+                    lastName:
+                        description: Last name
+                        type: string
+                        example: "Kowalski"
+                    email:
+                        description: Email
+                        type: string
+                        example: "jan.kowalski@company.com"
+                    position:
+                        description: Position in the organization
+                        type: string
+                        example: "CEO"
+                    organizationName:
+                        description: Name of the organization
+                        type: string
+                        example: "BestOrg"
+                    businessInterests:
+                        description: 
+                        type: string
+                        example: 
+                    technicalInterests:
+                        description: 
+                        type: string
+                        example: 
+                example: |
+                    {
+    
+                    }
+        responses:
+            200:
+                description: |
+                    The output contains the unique identifier of the newly created registration.
+                body:
+                    application/json:
+                        example: |
+                            {                    
+                                "statusCode": 200,
+                                "message": "Success",
+                                "output": "520d6254-72b2-48c3-a2f2-44bd1e7d3be3"
+                            }
+            400:
+                body:
+                    application/json:
+                        example: |
+                            { 
+                                "statusCode": 400,
+                                "message" : "Client error",
+                                "output" : null 
+                            }
+    /{id}:
+        delete:
+            description: |
+                Delete guest registration with the specified {id}.
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: |
+                                {
+                                    "statusCode": 200,
+                                    "message": "Registration {id} has been successfully deleted."
+                                }
+                400:
+                    body:
+                        application/json:
+                            example: |
+                                { 
+                                    "statusCode": 400,
+                                    "message" : "Client error"
+                                }
