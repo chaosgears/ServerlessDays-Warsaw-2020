@@ -74,7 +74,7 @@ def send_ses(email, token):
         return (200, ("Email sent! Message ID: %s", result['MessageId']))
 
 
-def put_item(first_name, last_name, position, address, email, organization_name, business_interests, \
+def put_item(first_name, last_name, position, email, organization_name, business_interests, \
                                                          technical_interests):
     guest_registration_id = str(uuid.uuid4())
  
@@ -84,8 +84,7 @@ def put_item(first_name, last_name, position, address, email, organization_name,
                     'registrationId': guest_registration_id,
                     'firstName': first_name,
                     'lastName': last_name,
-                    'organizationName': organization_name, 
-                    'address' : address, 
+                    'organizationName': organization_name,
                     'email': email,
                     'businessInterests': business_interests,
                     'technicalInterests': technical_interests 
@@ -116,14 +115,14 @@ def handler(event, context):
     last_name = event['json']['lastName']
     email = event['json']['email']
     position =  event['json']['position']
-    address =  event['json']['address']
     organization_name = event['json']['organizationName']
-    business_interests =  event['json']['business_interests']
-    technical_interests = event['json']['technical_interests']
+    business_interests =  event['json']['businessInterests']
+    technical_interests = event['json']['technicalInterests']
 
-    response = put_item(first_name, last_name, position, address, email, organization_name, business_interests, \
+    response = put_item(first_name, last_name, position, email, organization_name, business_interests, \
                                                          technical_interests) 
 
+    create_template()
     if response["statusCode"] == 200:
         guest_registration_id = response["output"]
         response = send_ses(email, guest_registration_id)     

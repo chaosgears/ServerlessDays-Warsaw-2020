@@ -1,5 +1,5 @@
-service: serverless-days-warsaw
-app: serverless-days-warsaw-registration
+service: serverlessDays-Warsaw
+app: serverlessDays-Warsaw-registration
 
 provider:
   name: aws
@@ -30,6 +30,30 @@ custom:
     - X-Requested-With
 
 functions:
+  add-guest-registration-api:
+    name: ${self:custom.service_acronym}-add-guest-registration-api
+    description: Adds guest registration to table guest_registration
+    handler: functions/add_guest_registration.handler
+    role: ServerlessDaysAddGuestRegistration
+    environment:
+        REGION: eu-central-1
+        TABLE_NAME: serverless-days-warsaw-guest-registration
+    events:
+      - http:
+          path: registration/
+          method: post
+          integration: lambda
+          cors:
+              origin: "*"
+              headers: ${self:custom.allowed-headers}
+          origins:
+            - "*"
+          request:
+            template:
+              application/json: '{"json":$input.json("$"), "firstName":"$input.params("firstName")", "lastName":"$input.params("lastName")", \
+                                  "email":"$input.params("email")", "position":"$input.params("position")", "organizationName":"$input.params("organizationName")", \
+                                  "technicalInterests":"$input.params("technicalInterests")", "businessInterests":"$input.params("businessInterests")" }'
+
   create-table:
     name: ${self:custom.service-acronym}-create-table
     description: Creates a table that will store event guests

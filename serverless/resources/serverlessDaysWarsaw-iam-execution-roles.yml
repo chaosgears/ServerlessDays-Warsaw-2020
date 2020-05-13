@@ -14,7 +14,7 @@ Resources:
       Path: /
       Policies:
         -
-          PolicyName: serverless-days-warsaw-create-table
+          PolicyName: serverlessDays-Warsaw-create-table
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -40,7 +40,7 @@ Resources:
       Path: /
       Policies:
         -
-          PolicyName: serverless-days-warsaw-delete-guest-registration
+          PolicyName: serverlessDays-Warsaw-delete-guest-registration
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -48,5 +48,32 @@ Resources:
                 Effect: Allow
                 Action:
                   - dynamodb:DeleteItem
+                Resource:
+                  - "*"
+
+  ServerlessDaysAddGuestRegistration:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      Policies:
+        -
+          PolicyName: serverlessDays-Warsaw-add-guest-registration
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - ses:SendEmail
+                  - dynamodb:PutItem
                 Resource:
                   - "*"
