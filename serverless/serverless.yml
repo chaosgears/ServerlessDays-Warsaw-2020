@@ -83,6 +83,26 @@ functions:
           request:
             template:
               application/json: '{"json":$input.json("$"), "registration_id":"$input.params("id")"}'
+  generate-guests-list:
+    name: ${self:custom.service_acronym}-generate-guests-list-api
+    description: Generate list of guests that registrated to event in .csv format and put it to s3 bucket
+    handler: functions/generate_guest_list_csv.handler
+    role: ServerlessDaysGenerateGuestsList
+    environment:
+        REGION: eu-central-1
+        TABLE_NAME: serverless-days-warsaw-guest-registration
+        PUBLIC_BUCKET: serverless-days-warsaw
+    # events:
+    #   - http:
+    #       path: registration/{id}
+    #       method: delete
+    #       integration: lambda
+    #       cors:
+    #           origin: "*"
+    #           headers: ${self:custom.allowed-headers}
+    #       origins:
+    #         - "*"
+  
   
 resources:
   - ${file(resources/serverless-days-warsaw-execution-roles.yml)}

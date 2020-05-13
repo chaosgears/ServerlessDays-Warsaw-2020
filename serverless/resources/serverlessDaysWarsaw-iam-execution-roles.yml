@@ -77,3 +77,30 @@ Resources:
                   - dynamodb:PutItem
                 Resource:
                   - "*"
+  
+  ServerlessDaysGenerateGuestsList:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      Policies:
+        -
+          PolicyName: serverlessDays-Warsaw-generate-guests_list
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - dynamodb:Scan
+                  - s3:PutObject
+                Resource:
+                  - "*"
