@@ -23,20 +23,23 @@ if "EMAIL" in env:
 if "EMAIL1" in env:
     emails.append(os.environ["EMAIL1"])  
 
-with open('html_file.html', 'r') as f:
-    html_string = f.read()
 
-send_template = {
-  "Template": {
-    "TemplateName": "MyTemplate",
-    "SubjectPart": "Greetings, {{name}}!",
-    "TextPart": "Dear {{name}},\r\n.",
-    #"HtmlPart": "<h1>Hello {{name}}</h1><p>Your favorite animal is {{favoriteanimal}}.</p>"
-    "HtmlPart": html_string
-  }
-}
+def delete_template():
+    response = client.delete_template(
+    TemplateName='MyTemplate'
+)
 
 def create_template():
+    with open('functions/email_html_template.html', 'r') as f:
+        html_string = f.read()
+
+    send_template = {
+        "TemplateName": "MyTemplate",
+        "SubjectPart": "Greetings, {{name}}!",
+        "TextPart": "Dear {{name}},\r\n.",
+        "HtmlPart": html_string
+    }
+
     response = ses.create_template(
         Template = send_template
     )
@@ -122,7 +125,8 @@ def handler(event, context):
     response = put_item(first_name, last_name, position, email, organization_name, business_interests, \
                                                          technical_interests) 
 
-    create_template()
+    # create_template()
+    # delete_template()
     if response["statusCode"] == 200:
         guest_registration_id = response["output"]
         response = send_ses(email, guest_registration_id)     

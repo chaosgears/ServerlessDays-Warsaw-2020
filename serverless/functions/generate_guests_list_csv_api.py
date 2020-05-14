@@ -12,7 +12,7 @@ logger.setLevel(logging.INFO)
 env = os.environ.copy()
 region = os.environ['REGION']
 dynamodb = boto3.resource('dynamodb')
-public_bucket = os.environ['PUBLIC_BUCKET']
+public_bucket = os.environ['BUCKET_NAME']
 s3 = boto3.client('s3', region_name = region) 
 guest_registration_table_name = os.environ['TABLE_NAME']
 guest_registration_table = dynamodb.Table(guest_registration_table_name)

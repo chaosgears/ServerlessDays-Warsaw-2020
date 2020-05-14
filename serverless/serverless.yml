@@ -13,6 +13,9 @@ provider:
     Owner: chaosgears
     Project: ${self:custom.app}
     Application: ${self:custom.service_acronym}
+  environment:
+    EMAIL: "aleksandra.iwoncz@chaosgears.com"
+    EMAIL1: "dziyana.hryshyna@chaosgears.com"
 
 custom:
   region: ${opt:region, self:provider.region}
@@ -64,6 +67,8 @@ functions:
     environment:
         REGION: eu-central-1
         TABLE_NAME: serverless-days-warsaw-guest-registration
+        EMAIL: dziyana.hryshyna@chaosgears.com
+        EMAIL1: aleksandra.iwoncz@chaosgears.com
   create-bucket:
     name: ${self:custom.service_acronym}-create-bucket
     description: Creates a bucket in which the user list file will be stored
@@ -101,7 +106,7 @@ functions:
     environment:
         REGION: eu-central-1
         TABLE_NAME: serverless-days-warsaw-guest-registration
-        PUBLIC_BUCKET: serverless-days-warsaw
+        BUCKET_NAME: serverless-days-warsaw-private-bucket
     # events:
     #   - http:
     #       path: registration/{id}
