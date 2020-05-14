@@ -26,8 +26,8 @@ def handler(event, context):
                 }
             ],
             ProvisionedThroughput={
-                'ReadCapacityUnits': 10,
-                'WriteCapacityUnits': 10
+                'ReadCapacityUnits': 15,
+                'WriteCapacityUnits': 15
             }
         )   
     except ClientError as err:

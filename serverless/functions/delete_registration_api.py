@@ -9,7 +9,7 @@ region = os.environ['REGION']
 table_name = os.environ['TABLE_NAME']
 dynamodb_client = boto3.client('dynamodb', region_name=region)
 
-def lambda_handler(event, context):
+def handler(event, context):
     registration_id = event['registration_id']
 
     try:
