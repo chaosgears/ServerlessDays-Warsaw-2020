@@ -44,8 +44,6 @@ functions:
     environment:
         REGION: eu-central-1
         TABLE_NAME: serverless-days-warsaw-guest-registration
-        EMAIL: dziyana.hryshyna@chaosgears.com
-        EMAIL1: aleksandra.iwoncz@chaosgears.com
     events:
       - http:
           path: registration/

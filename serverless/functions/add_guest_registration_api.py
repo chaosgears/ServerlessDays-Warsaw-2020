@@ -46,8 +46,9 @@ def create_template():
 
     print(response)
 
-def send_ses(email, token):
+def send_ses(email, token, first_name):
     link = 'http://example_link.s3-website.eu-central-1.amazonaws.com/guest_registration?uuid=' + token
+    template_data = '{ \"name\": \"' + first_name + ' \" }' 
     try:
         result = ses.send_templated_email(
             Source=emails[0],
@@ -66,8 +67,8 @@ def send_ses(email, token):
             #     }
             # },
             
-            Template='TEMPLATE_NAME',
-            TemplateData='{ \"name\":\"Diana\" }'      
+            Template='MyTemplate',
+            TemplateData=template_data     
         )
     except ClientError as e:
         logger.critical("----Client error: {0}".format(e))
@@ -140,7 +141,7 @@ def handler(event, context):
     # delete_template()
     if response["statusCode"] == 200:
         guest_registration_id = response["output"]
-        response = send_ses(email, guest_registration_id)     
+        response = send_ses(email, guest_registration_id, first_name)     
 
 
     response = {
