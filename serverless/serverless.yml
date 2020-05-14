@@ -16,7 +16,7 @@ provider:
 
 custom:
   region: ${opt:region, self:provider.region}
-  service-acronym: serverlessDays-Warsaw
+  service_acronym: serverlessDays-Warsaw
   app: serverlessDays-Warsaw-registration
   service: serverlessDays-Warsaw
   tablename: ${self:custom.app}-${self:custom.service_acronym}-${self:custom.stage}
@@ -34,7 +34,7 @@ custom:
 
 functions:
   add-guest-registration-api:
-    name: ${self:custom.app}-${self:custom.service_acronym}-add-guest-registration-api
+    name: ${self:custom.service_acronym}-add-guest-registration-api
     description: Adds guest registration to table guest_registration
     handler: functions/add_guest_registration.handler
     role: ServerlessDaysAddGuestRegistration
@@ -57,7 +57,7 @@ functions:
                                   "email":"$input.params("email")", "position":"$input.params("position")", "organizationName":"$input.params("organizationName")", \
                                   "technicalInterests":"$input.params("technicalInterests")", "businessInterests":"$input.params("businessInterests")" }'
   create-table:
-    name: ${self:custom.app}-${self:custom.service_acronym}-create-table
+    name: ${self:custom.service_acronym}-create-table
     description: Creates a table that will store event guests
     handler: functions/create_table.handler
     role: ServerlessDaysCreateTableRole
@@ -65,7 +65,7 @@ functions:
         REGION: eu-central-1
         TABLE_NAME: serverless-days-warsaw-guest-registration
   delete-registration-api:
-    name: ${self:custom.app}-${self:custom.service_acronym}-delete-registration-api
+    name: ${self:custom.service_acronym}-delete-registration-api
     description: Removes registration from database
     handler: functions/delete_registration_api.handler
     role: ServerlessDaysDeleteGuestRegistration
@@ -86,7 +86,7 @@ functions:
             template:
               application/json: '{"json":$input.json("$"), "registration_id":"$input.params("id")"}'
   generate-guests-list:
-    name: ${self:custom.app}-${self:custom.service_acronym}-generate-guests-list-api
+    name: ${self:custom.service_acronym}-generate-guests-list-api
     description: Generate list of guests that registrated to event in .csv format and put it to s3 bucket
     handler: functions/generate_guest_list_csv.handler
     role: ServerlessDaysGenerateGuestsList
