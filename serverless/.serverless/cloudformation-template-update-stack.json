@@ -93,7 +93,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463288980-2020-05-14T13:34:48.980Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463566227-2020-05-14T13:39:26.227Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-add-guest-registration-api",
         "Handler": "functions/add_guest_registration_api.handler",
@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463288980-2020-05-14T13:34:48.980Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463566227-2020-05-14T13:39:26.227Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-create-table",
         "Handler": "functions/create_table.handler",
@@ -229,7 +229,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463288980-2020-05-14T13:34:48.980Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463566227-2020-05-14T13:39:26.227Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-create-bucket",
         "Handler": "functions/create_bucket.handler",
@@ -297,7 +297,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463288980-2020-05-14T13:34:48.980Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463566227-2020-05-14T13:39:26.227Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-delete-registration-api",
         "Handler": "functions/delete_registration_api.handler",
@@ -365,10 +365,10 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463288980-2020-05-14T13:34:48.980Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589463566227-2020-05-14T13:39:26.227Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-generate-guests-list-api",
-        "Handler": "functions/generate_guest_list_csv_api.handler",
+        "Handler": "functions/generate_guests_list_csv_api.handler",
         "MemorySize": 1024,
         "Role": {
           "Fn::GetAtt": [
@@ -416,7 +416,7 @@
         "ServerlessDaysGenerateGuestsList"
       ]
     },
-    "GenerateDashguestsDashlistLambdaVersionh9wEUjSiZRO9tBmL1ryIUssx2Wc64EubFUxT2PaNj5M": {
+    "GenerateDashguestsDashlistLambdaVersionisVJkNs4qWh9rBHyROL3ADKuZZTx5k8rzV2m3mCiGSY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
@@ -928,7 +928,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1589463287354": {
+    "ApiGatewayDeployment1589463564351": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1262,7 +1262,7 @@
     "GenerateDashguestsDashlistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GenerateDashguestsDashlistLambdaVersionh9wEUjSiZRO9tBmL1ryIUssx2Wc64EubFUxT2PaNj5M"
+        "Ref": "GenerateDashguestsDashlistLambdaVersionisVJkNs4qWh9rBHyROL3ADKuZZTx5k8rzV2m3mCiGSY"
       }
     },
     "ServiceEndpoint": {
