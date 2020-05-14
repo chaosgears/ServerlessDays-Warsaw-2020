@@ -12,7 +12,7 @@ logger.setLevel(logging.INFO)
 env = os.environ.copy()
 region = os.environ['REGION']
 dynamodb = boto3.resource('dynamodb')
-public_bucket = os.environ['BUCKET_NAME']
+private_bucket = os.environ['BUCKET_NAME']
 s3 = boto3.client('s3', region_name = region) 
 guest_registration_table_name = os.environ['TABLE_NAME']
 guest_registration_table = dynamodb.Table(guest_registration_table_name)
@@ -33,7 +33,7 @@ def convert_json_to_csv(json_file):
         csv_writer.writerow(item.values()) # Writing data of CSV file 
       
     data_file.close() 
-    s3.upload_file(data_file, public_bucket, data_file)
+    s3.upload_file('/tmp/guests_list.csv', private_bucket, 'files/guests_list.csv')
 
 def handler(event, context):
     try:

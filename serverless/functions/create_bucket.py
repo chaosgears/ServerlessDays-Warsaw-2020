@@ -34,5 +34,5 @@ def put_file(body, key):
 
 def handler(event, context):
     if create_bucket('private') == True:
-        put_file('', '/files')
-        put_file('', '/helpers')
+        put_file('', 'files/')
+        put_file('', 'helpers/')
