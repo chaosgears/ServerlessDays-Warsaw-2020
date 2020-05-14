@@ -70,11 +70,22 @@ def send_ses(email, token):
             TemplateData='{ \"name\":\"Diana\" }'      
         )
     except ClientError as e:
+        logger.critical("----Client error: {0}".format(e))
+        logger.critical(
+            "----HTTP code: {0}".format(e.response['ResponseMetadata']['HTTPStatusCode']))
         message = e.response['Error']['Message']
-        statusCode = e.response['ResponseMetadata']['HTTPStatusCode']
-        return (statusCode, message)
+        response = { "statusCode" : e.response['ResponseMetadata']['HTTPStatusCode'],
+                    "message": message,
+                    "output": None }
+        return response
     else:
-        return (200, ("Email sent! Message ID: %s", result['MessageId']))
+        response = { 
+            "statusCode" : 200,
+            "message": ("Email sent! Message ID: %s", result['MessageId']),
+            "output":  result['MessageId']
+        }
+        
+        return response
 
 
 def put_item(first_name, last_name, position, email, organization_name, business_interests, \
