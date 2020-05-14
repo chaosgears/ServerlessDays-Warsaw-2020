@@ -36,7 +36,7 @@ functions:
   add-guest-registration-api:
     name: ${self:custom.service_acronym}-add-guest-registration-api
     description: Adds guest registration to table guest_registration
-    handler: functions/add_guest_registration.handler
+    handler: functions/add_guest_registration_api.handler
     role: ServerlessDaysAddGuestRegistration
     environment:
         REGION: eu-central-1
