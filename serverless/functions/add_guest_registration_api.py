@@ -71,7 +71,7 @@ def send_ses(email, token):
         )
     except ClientError as e:
         message = e.response['Error']['Message']
-        statusCode = e.response['ResponseMeta data']['HTTPStatusCode']
+        statusCode = e.response['ResponseMetadata']['HTTPStatusCode']
         return (statusCode, message)
     else:
         return (200, ("Email sent! Message ID: %s", result['MessageId']))

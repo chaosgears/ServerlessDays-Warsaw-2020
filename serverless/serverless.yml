@@ -101,7 +101,7 @@ functions:
   generate-guests-list:
     name: ${self:custom.service_acronym}-generate-guests-list-api
     description: Generate list of guests that registrated to event in .csv format and put it to s3 bucket
-    handler: functions/generate_guest_list_csv.handler
+    handler: functions/generate_guest_list_csv_api.handler
     role: ServerlessDaysGenerateGuestsList
     environment:
         REGION: eu-central-1
