@@ -1,5 +1,5 @@
-service: serverlessDays-Warsaw
-app: serverlessDays-Warsaw-registration
+service: serverlessDays-Warsaw-guest-registration
+app: serverlessDays-Warsaw
 
 provider:
   name: aws
@@ -8,15 +8,18 @@ provider:
   stack-name: ${self:custom.app}-${self:custom.stage}
   stage: dev
   tags:
+    Name: ${self:custom.tablename}
     Environment: ${self:custom.stage}
     Owner: chaosgears
-    Project: ${self:custom.service}
-    Application: ${self:custom.app}
+    Project: ${self:custom.app}
+    Application: ${self:custom.service_acronym}
 
 custom:
   region: ${opt:region, self:provider.region}
-  app: serverless-days-warsaw-registration
-  service-acronym: serverless-days-warsaw
+  service-acronym: serverlessDays-Warsaw
+  app: serverlessDays-Warsaw-registration
+  service: serverlessDays-Warsaw
+  tablename: ${self:custom.app}-${self:custom.service_acronym}-${self:custom.stage}
   stage: ${opt:stage, self:provider.stage}
   allowed-headers:
     - Content-Type
@@ -31,7 +34,7 @@ custom:
 
 functions:
   add-guest-registration-api:
-    name: ${self:custom.service_acronym}-add-guest-registration-api
+    name: ${self:custom.app}-${self:custom.service_acronym}-add-guest-registration-api
     description: Adds guest registration to table guest_registration
     handler: functions/add_guest_registration.handler
     role: ServerlessDaysAddGuestRegistration
@@ -53,9 +56,8 @@ functions:
               application/json: '{"json":$input.json("$"), "firstName":"$input.params("firstName")", "lastName":"$input.params("lastName")", \
                                   "email":"$input.params("email")", "position":"$input.params("position")", "organizationName":"$input.params("organizationName")", \
                                   "technicalInterests":"$input.params("technicalInterests")", "businessInterests":"$input.params("businessInterests")" }'
-
   create-table:
-    name: ${self:custom.service-acronym}-create-table
+    name: ${self:custom.app}-${self:custom.service_acronym}-create-table
     description: Creates a table that will store event guests
     handler: functions/create_table.handler
     role: ServerlessDaysCreateTableRole
@@ -63,7 +65,7 @@ functions:
         REGION: eu-central-1
         TABLE_NAME: serverless-days-warsaw-guest-registration
   delete-registration-api:
-    name: ${self:custom.service_acronym}-delete-registration-api
+    name: ${self:custom.app}-${self:custom.service_acronym}-delete-registration-api
     description: Removes registration from database
     handler: functions/delete_registration_api.handler
     role: ServerlessDaysDeleteGuestRegistration
@@ -84,7 +86,7 @@ functions:
             template:
               application/json: '{"json":$input.json("$"), "registration_id":"$input.params("id")"}'
   generate-guests-list:
-    name: ${self:custom.service_acronym}-generate-guests-list-api
+    name: ${self:custom.app}-${self:custom.service_acronym}-generate-guests-list-api
     description: Generate list of guests that registrated to event in .csv format and put it to s3 bucket
     handler: functions/generate_guest_list_csv.handler
     role: ServerlessDaysGenerateGuestsList
@@ -105,4 +107,4 @@ functions:
   
   
 resources:
-  - ${file(resources/serverless-days-warsaw-execution-roles.yml)}
+  - ${file(resources/serverlessDaysWarsaw-iam-execution-roles.yml)}
