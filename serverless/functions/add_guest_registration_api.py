@@ -63,7 +63,7 @@ def check_email_exists(email):
     return response
 
 def send_ses(email, token, first_name):
-    link = 'https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/registration?id=' + token
+    link = 'https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/registration/' + token
     template_data = '{ \"name\": \"' + first_name + ' \", \"link\": \"' + link + ' \" }' 
     try:
         result = ses.send_templated_email(

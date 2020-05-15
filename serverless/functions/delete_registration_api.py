@@ -10,7 +10,7 @@ table_name = os.environ['TABLE_NAME']
 dynamodb_client = boto3.client('dynamodb', region_name=region)
 
 def handler(event, context):
-    registration_id = event['json']['registration_id']
+    registration_id = event['registration_id']
 
     try:
         dynamodb_client.delete_item(
