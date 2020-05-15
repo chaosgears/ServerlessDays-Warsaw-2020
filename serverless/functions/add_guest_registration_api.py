@@ -24,48 +24,43 @@ if "EMAIL" in env:
 if "EMAIL1" in env:
     emails.append(os.environ["EMAIL1"])  
 
-def get_item(key=None, value=None):
+def scan(key=None, value=None):
     try:
-        response = guest_registration_table.get_item(
-            Key = { key : value }
-        )
+        response = guest_registration_table.scan(
+            FilterExpression = Attr(key).begins_with(value))
         print(response)
     except ClientError as err:
         logger.critical("----Client error: {0}".format(err))
         logger.critical(
             "----HTTP code: {0}".format(err.response['ResponseMetadata']['HTTPStatusCode']))
-        message = err.response['Error']['Message']
-        statusCode = err.response['ResponseMetadata']['HTTPStatusCode']
-        response = {
-            "message": message,
-            "statusCode": statusCode,
-            "organization": None
+        return {
+            "output": None,
+            "message" : err.response['Error']['Message'],
+            "statusCode" : err.response['ResponseMetadata']['HTTPStatusCode']
         }
     except ParamValidationError as e:
         print(e)
-        response = {
-            "message": "Parameter Validation Error",
-            "statusCode": 400,
-            "organization": None
-        }
+        return {
+            "output": None,
+            "message" : "ParamValidationError",
+            "statusCode" : 400
+        } 
     else:
-        if "Item" in response:
-            response = {
-                "message": "Success!",
-                "statusCode": 200,
-                "organization": response["Item"]
-            }
+        if len(response["Items"]) == 0:
+            return {
+                "message" : "Success",
+                "statusCode" : 200
+            } 
         else:
-            response = {
-                "message": "Object not found",
-                "statusCode": 404,
-                "organization": None
-            }
-    return response
-    
+            return {
+                "output": None,
+                "message" : "Already exists",
+                "statusCode" : 409
+            } 
+
 def check_email_exists(email):
-    response = get_item("email", email)
-    return True
+    response = scan("email", email)
+    return response
 
 def send_ses(email, token, first_name):
     link = 'https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/registration?id=' + token
@@ -143,18 +138,14 @@ def handler(event, context):
     business_interests =  event['json']['businessInterests']
     technical_interests = event['json']['technicalInterests']
 
-    email_exists = check_email_exists(email)
-    if email_exists == False:
+    response = check_email_exists(email)
+    if response["statusCode"] == 200:
         response = put_item(first_name, last_name, position, email, organization_name, business_interests, \
                                                              technical_interests) 
     
         if response["statusCode"] == 200:
             guest_registration_id = response["output"]
             response = send_ses(email, guest_registration_id, first_name)     
-    else:
-        response = { "statusCode" : 409,
-                        "message": "Already exist",
-                        "output": None }
                     
     response = {
         "statusCode": response["statusCode"],
