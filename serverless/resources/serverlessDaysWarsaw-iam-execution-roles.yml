@@ -105,7 +105,7 @@ Resources:
                   - ses:CreateTemplate
                   - ses:DeleteTemplate
                   - dynamodb:PutItem
-                  - dynamodb:GetItem
+                  - dynamodb:Scan
                 Resource:
                   - "*"
   
