@@ -6,10 +6,11 @@ from botocore.exceptions import ClientError
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 region = os.environ['REGION']
-bucket_name = os.environ['BUCKET_NAME']
+bucket_priv = os.environ['BUCKET_PRIV']
+bucket_public = os.environ['BUCKET_PUBLIC']
 s3 = boto3.client('s3', region_name = region)
 
-def create_bucket(acl):
+def create_bucket(bucket_name, acl):
     try:
         location = {'LocationConstraint': region}
         s3.create_bucket(ACL = acl, Bucket = bucket_name,
@@ -21,7 +22,7 @@ def create_bucket(acl):
         return False
     return True
 
-def put_file(body, key):
+def put_file(bucket_name, body, key):
     try:
         s3.put_object(
             Bucket = bucket_name, Body = body, Key = key)
@@ -33,6 +34,8 @@ def put_file(body, key):
     return True
 
 def handler(event, context):
-    if create_bucket('private') == True:
-        put_file('', 'files/')
-        put_file('', 'helpers/')
+    if create_bucket(bucket_priv, 'private') == True:
+        put_file(bucket_priv, '', 'files/')
+
+    if create_bucket(bucket_public, 'public-read') == True:
+        put_file(bucket_public, '', 'helpers/')

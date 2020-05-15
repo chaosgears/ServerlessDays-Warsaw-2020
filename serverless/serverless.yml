@@ -74,7 +74,8 @@ functions:
     role: ServerlessDaysCreateBucketRole
     environment:
         REGION: eu-central-1
-        BUCKET_NAME: serverless-days-warsaw-private-bucket
+        BUCKET_PRIV: serverless-days-warsaw-private-bucket
+        BUCKET_PUBLIC: serverless-days-warsaw-public-bucket
   delete-registration-api:
     name: ${self:custom.service_acronym}-delete-registration-api
     description: Removes registration from database
