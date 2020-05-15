@@ -24,6 +24,49 @@ if "EMAIL" in env:
 if "EMAIL1" in env:
     emails.append(os.environ["EMAIL1"])  
 
+def get_item(key=None, value=None):
+    try:
+        response = guest_registration_table.get_item(
+            Key = { key : value }
+        )
+        print(response)
+    except ClientError as err:
+        logger.critical("----Client error: {0}".format(err))
+        logger.critical(
+            "----HTTP code: {0}".format(err.response['ResponseMetadata']['HTTPStatusCode']))
+        message = err.response['Error']['Message']
+        statusCode = err.response['ResponseMetadata']['HTTPStatusCode']
+        response = {
+            "message": message,
+            "statusCode": statusCode,
+            "organization": None
+        }
+    except ParamValidationError as e:
+        print(e)
+        response = {
+            "message": "Parameter Validation Error",
+            "statusCode": 400,
+            "organization": None
+        }
+    else:
+        if "Item" in response:
+            response = {
+                "message": "Success!",
+                "statusCode": 200,
+                "organization": response["Item"]
+            }
+        else:
+            response = {
+                "message": "Object not found",
+                "statusCode": 404,
+                "organization": None
+            }
+    return response
+    
+def check_email_exists(email):
+    response = get_item("email", email)
+    return True
+
 def send_ses(email, token, first_name):
     link = 'https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/registration?id=' + token
     template_data = '{ \"name\": \"' + first_name + ' \", \"link\": \"' + link + ' \" }' 
@@ -100,14 +143,19 @@ def handler(event, context):
     business_interests =  event['json']['businessInterests']
     technical_interests = event['json']['technicalInterests']
 
-    response = put_item(first_name, last_name, position, email, organization_name, business_interests, \
-                                                         technical_interests) 
-
-    if response["statusCode"] == 200:
-        guest_registration_id = response["output"]
-        response = send_ses(email, guest_registration_id, first_name)     
-
-
+    email_exists = check_email_exists(email)
+    if email_exists == False:
+        response = put_item(first_name, last_name, position, email, organization_name, business_interests, \
+                                                             technical_interests) 
+    
+        if response["statusCode"] == 200:
+            guest_registration_id = response["output"]
+            response = send_ses(email, guest_registration_id, first_name)     
+    else:
+        response = { "statusCode" : 409,
+                        "message": "Already exist",
+                        "output": None }
+                    
     response = {
         "statusCode": response["statusCode"],
         "message": response["message"],
