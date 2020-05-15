@@ -88,7 +88,7 @@ functions:
     events:
       - http:
           path: registration/{id}
-          method: delete
+          method: post
           integration: lambda
           cors:
               origin: "*"
