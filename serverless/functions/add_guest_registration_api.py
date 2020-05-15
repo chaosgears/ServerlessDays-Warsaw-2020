@@ -15,6 +15,7 @@ dynamodb = boto3.resource('dynamodb', region_name=region)
 dynamodb_client = boto3.client('dynamodb', region_name=region)
 guest_registration_table_name = os.environ['TABLE_NAME']
 guest_registration_table = dynamodb.Table(guest_registration_table_name)
+template_name = os.environ['TEMPLATE_NAME']
 ses = boto3.client('ses')
 
 emails = []
@@ -23,51 +24,16 @@ if "EMAIL" in env:
 if "EMAIL1" in env:
     emails.append(os.environ["EMAIL1"])  
 
-
-def delete_template():
-    response = client.delete_template(
-    TemplateName='MyTemplate'
-)
-
-def create_template():
-    with open('functions/email_html_template.html', 'r') as f:
-        html_string = f.read()
-
-    send_template = {
-        "TemplateName": "MyTemplate",
-        "SubjectPart": "Greetings, {{name}}!",
-        "TextPart": "Dear {{name}},\r\n.",
-        "HtmlPart": html_string
-    }
-
-    response = ses.create_template(
-        Template = send_template
-    )
-
-    print(response)
-
 def send_ses(email, token, first_name):
-    link = 'http://example_link.s3-website.eu-central-1.amazonaws.com/guest_registration?uuid=' + token
+    link = 'https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/registration?id=' + token
     template_data = '{ \"name\": \"' + first_name + ' \", \"link\": \"' + link + ' \" }' 
     try:
         result = ses.send_templated_email(
-            Source=emails[0],
+            Source=emails[1],
             Destination={
                 'ToAddresses': [email]
             },
-            # ReplyToAddresses=[emails[0]],
-            # Message={
-            #     'Subject': {  
-            #         'Data': "ServerlessDays Warsaw 2020 - Confirmation email"
-            #     },
-            #     'Body': {
-            #         'Text': {
-            #             'Data': ": %s" % link
-            #         }
-            #     }
-            # },
-            
-            Template='MyTemplate',
+            Template=template_name,
             TemplateData=template_data     
         )
     except ClientError as e:
@@ -137,8 +103,6 @@ def handler(event, context):
     response = put_item(first_name, last_name, position, email, organization_name, business_interests, \
                                                          technical_interests) 
 
-    # create_template()
-    # delete_template()
     if response["statusCode"] == 200:
         guest_registration_id = response["output"]
         response = send_ses(email, guest_registration_id, first_name)     

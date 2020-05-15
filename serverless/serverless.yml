@@ -44,6 +44,7 @@ functions:
     environment:
         REGION: eu-central-1
         TABLE_NAME: serverless-days-warsaw-guest-registration
+        TEMPLATE_NAME: ServerlessDays-Warsaw-2020
     events:
       - http:
           path: registration/

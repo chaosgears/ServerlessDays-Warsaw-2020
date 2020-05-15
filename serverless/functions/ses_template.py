@@ -9,12 +9,7 @@ from botocore.exceptions import ParamValidationError
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-env = os.environ.copy()
 region = os.environ['REGION']
-dynamodb = boto3.resource('dynamodb', region_name=region)
-dynamodb_client = boto3.client('dynamodb', region_name=region)
-guest_registration_table_name = os.environ['TABLE_NAME']
-guest_registration_table = dynamodb.Table(guest_registration_table_name)
 ses = boto3.client('ses')
 
 def delete_template(template_name):
@@ -27,8 +22,8 @@ def create_template():
         html_string = f.read()
 
     send_template = {
-        "TemplateName": "TempTemplate",
-        "SubjectPart": "Greetings, {{name}}!",
+        "TemplateName": "ServerlessDays-Warsaw-2020",
+        "SubjectPart": "Greetings {{name}}, you've just registered on ServerlessDays Warsaw 2020!",
         "TextPart": "Dear {{name}},\r\n.",
         "HtmlPart": html_string
     }
@@ -41,7 +36,7 @@ def create_template():
 
 def handler(event, context):
     create_template()
-    # delete_template()   
+    # delete_template('ServerlessDays-Warsaw-2020')   
 
     response = {
         "statusCode": 200,
