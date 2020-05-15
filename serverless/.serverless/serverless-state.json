@@ -125,7 +125,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z/serverlessDays-Warsaw-guest-registration.zip"
+                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z/serverlessDays-Warsaw-guest-registration.zip"
               },
               "FunctionName": "serverlessDays-Warsaw-add-guest-registration-api",
               "Handler": "functions/add_guest_registration_api.handler",
@@ -176,14 +176,14 @@
               "ServerlessDaysAddGuestRegistration"
             ]
           },
-          "AddDashguestDashregistrationDashapiLambdaVersionefEBIoDanKjd71gEOKyEcZXv9NPHJWoBMrqLYRVfJqk": {
+          "AddDashguestDashregistrationDashapiLambdaVersioncMVXqkbG3gFX4tIM9raafXzNSJDQrrznQAjkI0gc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddDashguestDashregistrationDashapiLambdaFunction"
               },
-              "CodeSha256": "5K1SdRevDCiw0op9llkO4aFfHAWkCiU2qpSU2wkClMg=",
+              "CodeSha256": "hbPowNJIH76k6sZwOOtu3XNeZGZcTJI0xh0i24NR+GY=",
               "Description": "Adds guest registration to table guest_registration"
             }
           },
@@ -194,7 +194,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z/serverlessDays-Warsaw-guest-registration.zip"
+                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z/serverlessDays-Warsaw-guest-registration.zip"
               },
               "FunctionName": "serverlessDays-Warsaw-create-table",
               "Handler": "functions/create_table.handler",
@@ -244,14 +244,14 @@
               "ServerlessDaysCreateTableRole"
             ]
           },
-          "CreateDashtableLambdaVersionqig043pF1mO2TahqGq9Upi9tmMTdxMYaZPWi8spXIbI": {
+          "CreateDashtableLambdaVersion0I45JwIrVgK5OvYWslBrIIvFhLECgnvS682uGU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateDashtableLambdaFunction"
               },
-              "CodeSha256": "5K1SdRevDCiw0op9llkO4aFfHAWkCiU2qpSU2wkClMg=",
+              "CodeSha256": "hbPowNJIH76k6sZwOOtu3XNeZGZcTJI0xh0i24NR+GY=",
               "Description": "Creates a table that will store event guests"
             }
           },
@@ -262,7 +262,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z/serverlessDays-Warsaw-guest-registration.zip"
+                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z/serverlessDays-Warsaw-guest-registration.zip"
               },
               "FunctionName": "serverlessDays-Warsaw-create-bucket",
               "Handler": "functions/create_bucket.handler",
@@ -313,14 +313,14 @@
               "ServerlessDaysCreateBucketRole"
             ]
           },
-          "CreateDashbucketLambdaVersionHY0kjU3aYuQKUFxd0Nk7VBkoK1X3k3xrvh20FV9o": {
+          "CreateDashbucketLambdaVersionwaHeamvU8oFaMC0y0X1tIH1uH1B5pYPxgpzuOwvk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateDashbucketLambdaFunction"
               },
-              "CodeSha256": "5K1SdRevDCiw0op9llkO4aFfHAWkCiU2qpSU2wkClMg=",
+              "CodeSha256": "hbPowNJIH76k6sZwOOtu3XNeZGZcTJI0xh0i24NR+GY=",
               "Description": "Creates a bucket in which the user list file will be stored"
             }
           },
@@ -331,7 +331,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z/serverlessDays-Warsaw-guest-registration.zip"
+                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z/serverlessDays-Warsaw-guest-registration.zip"
               },
               "FunctionName": "serverlessDays-Warsaw-delete-registration-api",
               "Handler": "functions/delete_registration_api.handler",
@@ -381,14 +381,14 @@
               "ServerlessDaysDeleteGuestRegistration"
             ]
           },
-          "DeleteDashregistrationDashapiLambdaVersionRbhMQfvRHKcMt1dRcR8NZknpSPrztVdGXkFPrIRWgm8": {
+          "DeleteDashregistrationDashapiLambdaVersionvsWEuEWrLOemeMrpS4ZxqfWbqSPPqGMc6lj6drzhhN0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DeleteDashregistrationDashapiLambdaFunction"
               },
-              "CodeSha256": "5K1SdRevDCiw0op9llkO4aFfHAWkCiU2qpSU2wkClMg=",
+              "CodeSha256": "hbPowNJIH76k6sZwOOtu3XNeZGZcTJI0xh0i24NR+GY=",
               "Description": "Removes registration from database"
             }
           },
@@ -399,7 +399,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z/serverlessDays-Warsaw-guest-registration.zip"
+                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z/serverlessDays-Warsaw-guest-registration.zip"
               },
               "FunctionName": "serverlessDays-Warsaw-generate-guests-list-api",
               "Handler": "functions/generate_guests_list_csv_api.handler",
@@ -450,14 +450,14 @@
               "ServerlessDaysGenerateGuestsList"
             ]
           },
-          "GenerateDashguestsDashlistLambdaVersionSgxgA608o6EcRCaQxWe9ipsH9UQQnf5anFInOFtY18": {
+          "GenerateDashguestsDashlistLambdaVersionRya6zunjTLKgsru2qtHbWSPzzy7xe3VX8Rs90YR41V0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GenerateDashguestsDashlistLambdaFunction"
               },
-              "CodeSha256": "5K1SdRevDCiw0op9llkO4aFfHAWkCiU2qpSU2wkClMg=",
+              "CodeSha256": "hbPowNJIH76k6sZwOOtu3XNeZGZcTJI0xh0i24NR+GY=",
               "Description": "Generate list of guests that registrated to event in .csv format and put it to s3 bucket"
             }
           },
@@ -468,7 +468,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z/serverlessDays-Warsaw-guest-registration.zip"
+                "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z/serverlessDays-Warsaw-guest-registration.zip"
               },
               "FunctionName": "serverlessDays-Warsaw-ses-tempate",
               "Handler": "functions/ses_template.handler",
@@ -517,14 +517,14 @@
               "ServerlessDaysAddGuestRegistration"
             ]
           },
-          "SesDashtemplateLambdaVersionDROZN7A3zTqVOgrlatf1imm6NgEgYh7wYm8IfHUc": {
+          "SesDashtemplateLambdaVersionGoKY5jdDvA2zqpupj6UtVzfU1NjjB57Kv0v1tPkA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SesDashtemplateLambdaFunction"
               },
-              "CodeSha256": "5K1SdRevDCiw0op9llkO4aFfHAWkCiU2qpSU2wkClMg=",
+              "CodeSha256": "hbPowNJIH76k6sZwOOtu3XNeZGZcTJI0xh0i24NR+GY=",
               "Description": "Create and delete ses template"
             }
           },
@@ -1029,7 +1029,7 @@
               ]
             }
           },
-          "ApiGatewayDeployment1589543811770": {
+          "ApiGatewayDeployment1589545164803": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1340,37 +1340,37 @@
           "AddDashguestDashregistrationDashapiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddDashguestDashregistrationDashapiLambdaVersionefEBIoDanKjd71gEOKyEcZXv9NPHJWoBMrqLYRVfJqk"
+              "Ref": "AddDashguestDashregistrationDashapiLambdaVersioncMVXqkbG3gFX4tIM9raafXzNSJDQrrznQAjkI0gc"
             }
           },
           "CreateDashtableLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateDashtableLambdaVersionqig043pF1mO2TahqGq9Upi9tmMTdxMYaZPWi8spXIbI"
+              "Ref": "CreateDashtableLambdaVersion0I45JwIrVgK5OvYWslBrIIvFhLECgnvS682uGU"
             }
           },
           "CreateDashbucketLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateDashbucketLambdaVersionHY0kjU3aYuQKUFxd0Nk7VBkoK1X3k3xrvh20FV9o"
+              "Ref": "CreateDashbucketLambdaVersionwaHeamvU8oFaMC0y0X1tIH1uH1B5pYPxgpzuOwvk"
             }
           },
           "DeleteDashregistrationDashapiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteDashregistrationDashapiLambdaVersionRbhMQfvRHKcMt1dRcR8NZknpSPrztVdGXkFPrIRWgm8"
+              "Ref": "DeleteDashregistrationDashapiLambdaVersionvsWEuEWrLOemeMrpS4ZxqfWbqSPPqGMc6lj6drzhhN0"
             }
           },
           "GenerateDashguestsDashlistLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GenerateDashguestsDashlistLambdaVersionSgxgA608o6EcRCaQxWe9ipsH9UQQnf5anFInOFtY18"
+              "Ref": "GenerateDashguestsDashlistLambdaVersionRya6zunjTLKgsru2qtHbWSPzzy7xe3VX8Rs90YR41V0"
             }
           },
           "SesDashtemplateLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SesDashtemplateLambdaVersionDROZN7A3zTqVOgrlatf1imm6NgEgYh7wYm8IfHUc"
+              "Ref": "SesDashtemplateLambdaVersionGoKY5jdDvA2zqpupj6UtVzfU1NjjB57Kv0v1tPkA"
             }
           },
           "ServiceEndpoint": {
@@ -1563,7 +1563,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "AddDashguestDashregistrationDashapiLambdaVersionefEBIoDanKjd71gEOKyEcZXv9NPHJWoBMrqLYRVfJqk"
+        "versionLogicalId": "AddDashguestDashregistrationDashapiLambdaVersioncMVXqkbG3gFX4tIM9raafXzNSJDQrrznQAjkI0gc"
       },
       "create-table": {
         "name": "serverlessDays-Warsaw-create-table",
@@ -1580,7 +1580,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "CreateDashtableLambdaVersionqig043pF1mO2TahqGq9Upi9tmMTdxMYaZPWi8spXIbI"
+        "versionLogicalId": "CreateDashtableLambdaVersion0I45JwIrVgK5OvYWslBrIIvFhLECgnvS682uGU"
       },
       "create-bucket": {
         "name": "serverlessDays-Warsaw-create-bucket",
@@ -1598,7 +1598,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "CreateDashbucketLambdaVersionHY0kjU3aYuQKUFxd0Nk7VBkoK1X3k3xrvh20FV9o"
+        "versionLogicalId": "CreateDashbucketLambdaVersionwaHeamvU8oFaMC0y0X1tIH1uH1B5pYPxgpzuOwvk"
       },
       "delete-registration-api": {
         "name": "serverlessDays-Warsaw-delete-registration-api",
@@ -1656,7 +1656,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "DeleteDashregistrationDashapiLambdaVersionRbhMQfvRHKcMt1dRcR8NZknpSPrztVdGXkFPrIRWgm8"
+        "versionLogicalId": "DeleteDashregistrationDashapiLambdaVersionvsWEuEWrLOemeMrpS4ZxqfWbqSPPqGMc6lj6drzhhN0"
       },
       "generate-guests-list": {
         "name": "serverlessDays-Warsaw-generate-guests-list-api",
@@ -1674,7 +1674,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "GenerateDashguestsDashlistLambdaVersionSgxgA608o6EcRCaQxWe9ipsH9UQQnf5anFInOFtY18"
+        "versionLogicalId": "GenerateDashguestsDashlistLambdaVersionRya6zunjTLKgsru2qtHbWSPzzy7xe3VX8Rs90YR41V0"
       },
       "ses-template": {
         "name": "serverlessDays-Warsaw-ses-tempate",
@@ -1690,7 +1690,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "SesDashtemplateLambdaVersionDROZN7A3zTqVOgrlatf1imm6NgEgYh7wYm8IfHUc"
+        "versionLogicalId": "SesDashtemplateLambdaVersionGoKY5jdDvA2zqpupj6UtVzfU1NjjB57Kv0v1tPkA"
       }
     },
     "resources": {
@@ -1917,7 +1917,7 @@
     "artifact": "D:\\AWS\\ServerlessDays-Warsaw-2020\\serverless\\.serverless\\serverlessDays-Warsaw-guest-registration.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589543815191-2020-05-15T11:56:55.191Z",
+    "artifactDirectoryName": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589545166081-2020-05-15T12:19:26.081Z",
     "artifact": "serverlessDays-Warsaw-guest-registration.zip"
   }
 }
