@@ -4,8 +4,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Demystifying Email Design</title>
+<title>ServerlessDaysWarsaw-2020</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    .button {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    
+    .button1 {background-color: #4CAF50;} /* Green */
+    .button2 {background-color: #008CBA;} /* Blue */
+    </style>
 </head>
 <body style="margin: 0; padding: 0;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
@@ -14,7 +31,7 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                     <tr>
                         <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/h1.gif" alt="ServerlessDaysWarsaw-2020" width="300" height="230" style="display: block;" />
                         </td>
                     </tr>
                     <tr>
@@ -22,15 +39,38 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
-                                        <b>Lorem ipsum dolor sit amet!</b>
+                                        <b>Registration Confirmation</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 10px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Hello, {{name}}! Thank you for registering for our ServerlessDaysWarsaw-2020 conference.
+                                        <ul style="list-style-type:none;">
+                                            <li style="margin: 10px">Event Details:</li>
+                                            <li style="margin: 10px">When:</li>
+                                            <li style="margin: 10px">Where:</li>
+                                            <li style="margin: 10px">Address:</li>
+                                            <li style="margin: 10px">Hashtag:</li>
+                                        </ul>              
+                                        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat. -->
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
+                                        If you want to unregister from the event, please press the button below.
+                                        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat. -->
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; ">
+                                        <a class="w3-button w3-black" href="{{link}}" style="width: 20%; margin-left: 40%; margin-right: 40%;">Unregister</a>  
+                                        <!-- <a href="http://www.twitter.com/" style="color: #ffffff; text-align:center;">
+                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/fb.gif" alt="Facebook" width="38" height="38" style="display: block; margin-left: auto;
+                                            margin-right: auto;" border="0" />
+                                        </a> -->
+                                    </td>
+                                </tr>
+                                <!-- <tr>
                                     <td>
                                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                             <tr>
@@ -68,7 +108,7 @@
                                             </tr>
                                         </table>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </table>
                         </td>
                     </tr>
@@ -77,7 +117,7 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
-                                        &reg; Someone, somewhere 2013<br/>
+                                        &reg; Someone, somewhere 2020<br/>
                                         <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
                                     </td>
                                     <td align="right" width="25%">

@@ -116,7 +116,13 @@ functions:
     #           headers: ${self:custom.allowed-headers}
     #       origins:
     #         - "*"
-  
+  ses-template:
+    name: ${self:custom.service_acronym}-ses-tempate
+    description: Create and delete ses template
+    handler: functions/ses_template.handler
+    role: ServerlessDaysAddGuestRegistration
+    environment:
+        REGION: eu-central-1
   
 resources:
   - ${file(resources/serverlessDaysWarsaw-iam-execution-roles.yml)}

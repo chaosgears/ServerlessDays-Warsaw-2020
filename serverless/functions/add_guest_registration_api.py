@@ -48,7 +48,7 @@ def create_template():
 
 def send_ses(email, token, first_name):
     link = 'http://example_link.s3-website.eu-central-1.amazonaws.com/guest_registration?uuid=' + token
-    template_data = '{ \"name\": \"' + first_name + ' \" }' 
+    template_data = '{ \"name\": \"' + first_name + ' \", \"link\": \"' + link + ' \" }' 
     try:
         result = ses.send_templated_email(
             Source=emails[0],
