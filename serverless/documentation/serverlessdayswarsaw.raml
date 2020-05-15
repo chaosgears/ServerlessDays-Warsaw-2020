@@ -1,7 +1,7 @@
 #%RAML 1.0
 title: Serverless Days 2020
 version: v1
-baseUri: ????????????
+baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
 
 /registration:
     description: |
@@ -43,7 +43,13 @@ baseUri: ????????????
                         example: 
                 example: |
                     {
-    
+                        "firstName": "Lui",
+                        "lastName": "Chak",
+                        "email": "lui.chak@softgame.com",
+                        "position": "Junior Software Developer",
+                        "organizationName": "SoftGame",
+                        "businessInterests": ["Test"],
+                        "technicalInterests": ["Test"]
                     }
         responses:
             200:
@@ -64,6 +70,15 @@ baseUri: ????????????
                             { 
                                 "statusCode": 400,
                                 "message" : "Client error",
+                                "output" : null 
+                            }
+            409:
+                body:
+                    application/json:
+                        example: |
+                            { 
+                                "statusCode": 409,
+                                "message" : "Already exists",
                                 "output" : null 
                             }
     /{id}:

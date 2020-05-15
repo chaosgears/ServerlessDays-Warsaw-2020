@@ -47,7 +47,7 @@ functions:
         TEMPLATE_NAME: ServerlessDays-Warsaw-2020
     events:
       - http:
-          path: registration/
+          path: registration
           method: post
           integration: lambda
           cors:

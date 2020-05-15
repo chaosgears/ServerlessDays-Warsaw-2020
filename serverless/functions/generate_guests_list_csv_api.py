@@ -18,19 +18,17 @@ guest_registration_table_name = os.environ['TABLE_NAME']
 guest_registration_table = dynamodb.Table(guest_registration_table_name)
 
 def convert_json_to_csv(json_file):
+    print(json_file)
     data_file = open('/tmp/guests_list.csv', 'w') 
     csv_writer = csv.writer(data_file) # create the csv writer object 
-      
-    # Counter variable used for writing  
-    # headers to the CSV file 
-    count = 0
-    for item in json_file: 
-        if count == 0: 
-            header = item.keys() # Writing headers of CSV file 
-            csv_writer.writerow(header) 
-            count += 1
     
-        csv_writer.writerow(item.values()) # Writing data of CSV file 
+    headers = ["registrationId", "firstName", "lastName", "organizationName",
+                "email", "bussinessInterest", "technicalInterest"]
+    csv_writer.writerow(headers) 
+    
+    for item in json_file:
+        csv_writer.writerow([item['registrationId'], item['firstName'], item['lastName'], 
+        item['organizationName'], item['email'], item['businessInterests'], item['technicalInterests']])
       
     data_file.close() 
     s3.upload_file('/tmp/guests_list.csv', private_bucket, 'files/guests_list.csv')
