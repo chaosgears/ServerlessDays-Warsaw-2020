@@ -23,12 +23,12 @@ def convert_json_to_csv(json_file):
     csv_writer = csv.writer(data_file) # create the csv writer object 
     
     headers = ["registrationId", "firstName", "lastName", "organizationName",
-                "email", "bussinessInterest", "technicalInterest"]
+                "email", "bussinessInterest", "technicalInterest", "isCanceled"]
     csv_writer.writerow(headers) 
     
     for item in json_file:
-        csv_writer.writerow([item['registrationId'], item['firstName'], item['lastName'], 
-        item['organizationName'], item['email'], item['businessInterests'], item['technicalInterests']])
+        csv_writer.writerow([item['registrationId'], item['firstName'], item['lastName'], item['organizationName'], 
+         item['email'], item['businessInterests'], item['technicalInterests'], item['isCanceled']])
       
     data_file.close() 
     s3.upload_file('/tmp/guests_list.csv', private_bucket, 'files/guests_list.csv')

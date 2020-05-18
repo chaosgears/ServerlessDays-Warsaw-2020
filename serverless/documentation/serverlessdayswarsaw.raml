@@ -35,12 +35,16 @@ baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
                         example: "BestOrg"
                     businessInterests:
                         description: 
-                        type: string
-                        example: 
+                        type: list
+                        example: ["Test"]
                     technicalInterests:
                         description: 
-                        type: string
-                        example: 
+                        type: list
+                        example: ["Test"]
+                    isCanceled:
+                        description: Property is set to true if the guest cancels registration, otherwise the flag is false 
+                        type: boolean
+                        example: True
                 example: |
                     {
                         "firstName": "Lui",
@@ -92,7 +96,7 @@ baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
                             example: |
                                 {
                                     "statusCode": 200,
-                                    "message": "Registration {id} has been successfully deleted."
+                                    "message": "Registration {id} has been successfully canceled."
                                 }
                 400:
                     body:

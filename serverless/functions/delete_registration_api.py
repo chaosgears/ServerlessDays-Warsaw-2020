@@ -12,8 +12,9 @@ dynamodb_client = boto3.client('dynamodb', region_name=region)
 def handler(event, context):
     registration_id = event['registration_id']
 
+    # Get guest with specified registration id
     try:
-        dynamodb_client.delete_item(
+        response = dynamodb_client.get_item(
             Key={
                 'registrationId': {
                     'S': registration_id
@@ -21,7 +22,6 @@ def handler(event, context):
             },
             TableName=table_name
         )
-
     except ClientError as err:
         logger.critical("----Client error: {0}".format(err))
         logger.critical(
@@ -29,9 +29,41 @@ def handler(event, context):
         message = err.response['Error']['Message']
         statusCode = err.response['ResponseMetadata']['HTTPStatusCode']
     else:
-        message = "Registration " + registration_id + " has been successfully deleted."
+        message = "Registration " + registration_id + " has been successfully canceled."
         statusCode = 200
-        
+
+    if "Item" not in response:
+        message = "Registration not found"
+        statusCode = 404
+    else:
+        item = response["Item"]
+        # Change flag 
+        try:
+            dynamodb_client.put_item(
+                TableName=table_name,
+                Item={
+                        'registrationId': item['registrationId'],
+                        'firstName': item['firstName'],
+                        'lastName': item['lastName'],
+                        'organizationName': item['organizationName'],
+                        'email': item['email'],
+                        'businessInterests': item['businessInterests'],
+                        'technicalInterests': item['technicalInterests'],
+                        'isCanceled': {
+                            'BOOL': True
+                        }
+                    }
+            )
+
+        except ClientError as e:
+            logger.critical("----Client error: {0}".format(e))
+            logger.critical(
+                "----HTTP code: {0}".format(e.response['ResponseMetadata']['HTTPStatusCode']))
+            message = e.response['Error']['Message']
+            response = { "statusCode" : e.response['ResponseMetadata']['HTTPStatusCode'],
+                        "message": message,
+                        "output": None }
+
     response = {
         "statusCode": statusCode,
         "message": message,

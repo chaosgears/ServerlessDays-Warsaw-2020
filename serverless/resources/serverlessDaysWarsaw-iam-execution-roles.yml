@@ -74,9 +74,10 @@ Resources:
               -
                 Effect: Allow
                 Action:
-                  - dynamodb:DeleteItem
+                  - dynamodb:GetItem
+                  - dynamodb:PutItem
                 Resource:
-                  - "*"
+                  - arn:aws:dynamodb:eu-central-1:583041644330:table/serverless-days-warsaw-guest-registration
 
   ServerlessDaysAddGuestRegistration:
     Type: AWS::IAM::Role
@@ -131,7 +132,16 @@ Resources:
               -
                 Effect: Allow
                 Action:
-                  - dynamodb:Scan
                   - s3:PutObject
                 Resource:
-                  - "*"
+                  - arn:aws:s3:::serverless-days-warsaw-private-bucket
+                  - arn:aws:s3:::serverless-days-warsaw-private-bucket/*
+              -
+                Effect: Allow
+                Action:
+                  - dynamodb:Scan
+                Resource:
+                  - arn:aws:dynamodb:eu-central-1:583041644330:table/serverless-days-warsaw-guest-registration
+              
+
+
