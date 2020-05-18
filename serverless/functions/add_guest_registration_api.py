@@ -28,7 +28,6 @@ def scan(key=None, value=None):
     try:
         response = guest_registration_table.scan(
             FilterExpression = Attr(key).begins_with(value))
-        print(response)
     except ClientError as err:
         logger.critical("----Client error: {0}".format(err))
         logger.critical(
@@ -53,7 +52,7 @@ def scan(key=None, value=None):
             } 
         else:
             return {
-                "output": None,
+                "output": response["Items"][0],
                 "message" : "Already exists",
                 "statusCode" : 409
             } 
@@ -92,6 +91,46 @@ def send_ses(email, token, first_name):
         
         return response
 
+def update_item(item):
+    guest_registration_id = item["registrationId"]
+    first_name = item["firstName"]
+    last_name = item['lastName']
+    organization_name = item['organizationName']
+    email = item['email']
+    business_interests = item['businessInterests']
+    technical_interests = item['technicalInterests']
+
+    try:
+        response = guest_registration_table.put_item(
+            Item={
+                    'registrationId': guest_registration_id,
+                    'firstName': first_name,
+                    'lastName': last_name,
+                    'organizationName': organization_name,
+                    'email': email,
+                    'businessInterests': business_interests,
+                    'technicalInterests': technical_interests,
+                    'isCanceled': False
+                }
+        )
+
+    except ClientError as e:
+        logger.critical("----Client error: {0}".format(e))
+        logger.critical(
+            "----HTTP code: {0}".format(e.response['ResponseMetadata']['HTTPStatusCode']))
+        message = e.response['Error']['Message']
+        response = { "statusCode" : e.response['ResponseMetadata']['HTTPStatusCode'],
+                    "message": message,
+                    "output": None }
+        return response
+        
+    response = { 
+                "statusCode" : 200,
+                "message": "Success",
+                "output": guest_registration_id
+                }
+
+    return response
 
 def put_item(first_name, last_name, position, email, organization_name, business_interests, \
                                                          technical_interests):
@@ -106,7 +145,10 @@ def put_item(first_name, last_name, position, email, organization_name, business
                     'organizationName': organization_name,
                     'email': email,
                     'businessInterests': business_interests,
-                    'technicalInterests': technical_interests 
+                    'technicalInterests': technical_interests ,
+                    'isCanceled': {
+                        'BOOL': False
+                    }
                 }
         )
 
@@ -146,7 +188,18 @@ def handler(event, context):
         if response["statusCode"] == 200:
             guest_registration_id = response["output"]
             response = send_ses(email, guest_registration_id, first_name)     
-                    
+            if response["statusCode"] == 200:    
+                response["output"] = guest_registration_id
+                
+    elif response["statusCode"] == 409:
+        if response["output"]["isCanceled"] == True:
+            response = update_item(response["output"])
+            if response["statusCode"] == 200:
+                guest_registration_id = response["output"]
+                response = send_ses(email, guest_registration_id, first_name)
+                if response["statusCode"] == 200:    
+                    response["output"] = guest_registration_id
+
     response = {
         "statusCode": response["statusCode"],
         "message": response["message"],
