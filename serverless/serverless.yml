@@ -67,7 +67,8 @@ functions:
     role: ServerlessDaysCreateTableRole
     environment:
         REGION: eu-central-1
-        TABLE_NAME: serverless-days-warsaw-guest-registration
+        TABLE_REGISTRATION: serverless-days-warsaw-guest-registration
+        TABLE_PRESENTATION: serverless-days-warsaw-call-for-papers
   create-bucket:
     name: ${self:custom.service_acronym}-create-bucket
     description: Creates a bucket in which the user list file will be stored
