@@ -76,11 +76,11 @@ def check_presentation_exists(email):
     return response
 
 def send_ses(email, first_name):
-    template_data = '{ \"name\": \"' + first_name + '\" }' 
+    template_data = '{ \"name\": \"' + first_name + ' \", \"link\": \"' + 'test' + ' \" }' 
     try:
         result = ses.send_templated_email(
-            Source=emails[1],
-            Destination={ 
+            Source=emails[0],
+            Destination={
                 'ToAddresses': [email]
             },
             Template=template_name,

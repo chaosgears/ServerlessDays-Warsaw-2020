@@ -1,0 +1,1752 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "ServerlessDeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ServerlessDeploymentBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ServerlessDeploymentBucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "AddDashguestDashregistrationDashapiLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-add-guest-registration-api"
+      }
+    },
+    "CallDashforDashpapersDashapiLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-call-for-papers-api"
+      }
+    },
+    "CreateDashtableLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-create-table"
+      }
+    },
+    "CreateDashbucketLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-create-bucket"
+      }
+    },
+    "DeleteDashregistrationDashapiLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-delete-registration-api"
+      }
+    },
+    "GenerateDashguestsDashlistLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-generate-guests-list-api"
+      }
+    },
+    "SesDashtemplateLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessDays-Warsaw-ses-tempate"
+      }
+    },
+    "AddDashguestDashregistrationDashapiLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-add-guest-registration-api",
+        "Handler": "functions/add_guest_registration_api.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysAddGuestRegistration",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Adds guest registration to table guest_registration",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1",
+            "TABLE_NAME": "serverless-days-warsaw-guest-registration",
+            "TEMPLATE_NAME": "ServerlessDays-Warsaw-2020"
+          }
+        }
+      },
+      "DependsOn": [
+        "AddDashguestDashregistrationDashapiLogGroup",
+        "ServerlessDaysAddGuestRegistration"
+      ]
+    },
+    "AddDashguestDashregistrationDashapiLambdaVersionJvhHhBa7LnyMo152RCZft9QTItCCeZmmtjJhM4TDI": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AddDashguestDashregistrationDashapiLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Adds guest registration to table guest_registration"
+      }
+    },
+    "CallDashforDashpapersDashapiLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-call-for-papers-api",
+        "Handler": "functions/call_for_papers_api.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysAddGuestRegistration",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Adds presentation to table call for papers",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1",
+            "TABLE_NAME": "serverless-days-warsaw-guest-registration",
+            "TABLE_NAME1": "serverless-days-warsaw-call-for-papers",
+            "TEMPLATE_NAME": "ServerlessDays-Warsaw-2020-cfp"
+          }
+        }
+      },
+      "DependsOn": [
+        "CallDashforDashpapersDashapiLogGroup",
+        "ServerlessDaysAddGuestRegistration"
+      ]
+    },
+    "CallDashforDashpapersDashapiLambdaVersionKZA1AQsS2eELjCidoL2JWvqlnkO7NOi7s5ttcf4G0": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CallDashforDashpapersDashapiLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Adds presentation to table call for papers"
+      }
+    },
+    "CreateDashtableLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-create-table",
+        "Handler": "functions/create_table.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysCreateTableRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Creates a table that will store event guests",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1",
+            "TABLE_REGISTRATION": "serverless-days-warsaw-guest-registration",
+            "TABLE_PRESENTATION": "serverless-days-warsaw-call-for-papers"
+          }
+        }
+      },
+      "DependsOn": [
+        "CreateDashtableLogGroup",
+        "ServerlessDaysCreateTableRole"
+      ]
+    },
+    "CreateDashtableLambdaVersionzBD9qiN6vrkdmfvtNWLcO7S4OUG19LjgtdMA7ZUTJY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CreateDashtableLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Creates a table that will store event guests"
+      }
+    },
+    "CreateDashbucketLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-create-bucket",
+        "Handler": "functions/create_bucket.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysCreateBucketRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Creates a bucket in which the user list file will be stored",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1",
+            "BUCKET_PRIV": "serverless-days-warsaw-private-bucket",
+            "BUCKET_PUBLIC": "serverless-days-warsaw-public-bucket"
+          }
+        }
+      },
+      "DependsOn": [
+        "CreateDashbucketLogGroup",
+        "ServerlessDaysCreateBucketRole"
+      ]
+    },
+    "CreateDashbucketLambdaVersionUSk5VtPyxb0sfQleikfwDrORaivpbJkjfFBC3y3n5A": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CreateDashbucketLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Creates a bucket in which the user list file will be stored"
+      }
+    },
+    "DeleteDashregistrationDashapiLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-delete-registration-api",
+        "Handler": "functions/delete_registration_api.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysDeleteGuestRegistration",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Removes registration from database",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1",
+            "TABLE_NAME": "serverless-days-warsaw-guest-registration"
+          }
+        }
+      },
+      "DependsOn": [
+        "DeleteDashregistrationDashapiLogGroup",
+        "ServerlessDaysDeleteGuestRegistration"
+      ]
+    },
+    "DeleteDashregistrationDashapiLambdaVersion94z7ktmRWrONFBvY0IUV8Jb4UYi7oGMuGLcbfcdlDYA": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "DeleteDashregistrationDashapiLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Removes registration from database"
+      }
+    },
+    "GenerateDashguestsDashlistLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-generate-guests-list-api",
+        "Handler": "functions/generate_guests_list_csv_api.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysGenerateGuestsList",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Generate list of guests that registrated to event in .csv format and put it to s3 bucket",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1",
+            "TABLE_NAME": "serverless-days-warsaw-guest-registration",
+            "BUCKET_NAME": "serverless-days-warsaw-private-bucket"
+          }
+        }
+      },
+      "DependsOn": [
+        "GenerateDashguestsDashlistLogGroup",
+        "ServerlessDaysGenerateGuestsList"
+      ]
+    },
+    "GenerateDashguestsDashlistLambdaVersionjzsbVIkLjhDX9Paeeg4nbys2Q5kWiTi3CYEFdFPQCY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "GenerateDashguestsDashlistLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Generate list of guests that registrated to event in .csv format and put it to s3 bucket"
+      }
+    },
+    "SesDashtemplateLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+        },
+        "FunctionName": "serverlessDays-Warsaw-ses-tempate",
+        "Handler": "functions/ses_template.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "ServerlessDaysAddGuestRegistration",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Timeout": 6,
+        "Description": "Create and delete ses template",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverlessDays-Warsaw-registration-serverlessDays-Warsaw-dev"
+          },
+          {
+            "Key": "Environment",
+            "Value": "dev"
+          },
+          {
+            "Key": "Owner",
+            "Value": "chaosgears"
+          },
+          {
+            "Key": "Project",
+            "Value": "serverlessDays-Warsaw-registration"
+          },
+          {
+            "Key": "Application",
+            "Value": "serverlessDays-Warsaw"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "EMAIL": "aleksandra.iwoncz@chaosgears.com",
+            "EMAIL1": "dziyana.hryshyna@chaosgears.com",
+            "REGION": "eu-central-1"
+          }
+        }
+      },
+      "DependsOn": [
+        "SesDashtemplateLogGroup",
+        "ServerlessDaysAddGuestRegistration"
+      ]
+    },
+    "SesDashtemplateLambdaVersionDzPYauWsY0EDlJ8Jeofqo1ARgearVxIi08WDWtfwHc": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SesDashtemplateLambdaFunction"
+        },
+        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "Description": "Create and delete ses template"
+      }
+    },
+    "ApiGatewayRestApi": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": "dev-serverlessDays-Warsaw-guest-registration",
+        "EndpointConfiguration": {
+          "Types": [
+            "EDGE"
+          ]
+        },
+        "Policy": ""
+      }
+    },
+    "ApiGatewayResourceRegistration": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "registration",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceRegistrationIdVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceRegistration"
+        },
+        "PathPart": "{id}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourcePresentation": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "presentation",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodRegistrationOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,Access-Control-Allow-Headers,Access-Control-Allow-Origin,X-Requested-With'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceRegistration"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodPresentationOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,Access-Control-Allow-Headers,Access-Control-Allow-Origin,X-Requested-With'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePresentation"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodRegistrationIdVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,Access-Control-Allow-Headers,Access-Control-Allow-Origin,X-Requested-With'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceRegistrationIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodRegistrationPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceRegistration"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "AddDashguestDashregistrationDashapiLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          },
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{\"json\":$input.json(\"$\"), \"firstName\":\"$input.params(\"firstName\")\", \"lastName\":\"$input.params(\"lastName\")\", \\ \"email\":\"$input.params(\"email\")\", \"position\":\"$input.params(\"position\")\", \"organizationName\":\"$input.params(\"organizationName\")\", \\ \"technicalInterests\":\"$input.params(\"technicalInterests\")\", \"businessInterests\":\"$input.params(\"businessInterests\")\" }",
+            "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $context.authorizer )\n    \"enhancedAuthContext\": $loop,\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop,\n\n    \"requestPath\": \"$context.resourcePath\"\n  }\n\n  "
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": 200,
+              "SelectionPattern": "",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 400,
+              "SelectionPattern": "[\\s\\S]*\\[400\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 401,
+              "SelectionPattern": "[\\s\\S]*\\[401\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 403,
+              "SelectionPattern": "[\\s\\S]*\\[403\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 404,
+              "SelectionPattern": "[\\s\\S]*\\[404\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 422,
+              "SelectionPattern": "[\\s\\S]*\\[422\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 500,
+              "SelectionPattern": "[\\s\\S]*(Process\\s?exited\\s?before\\s?completing\\s?request|\\[500\\])[\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 502,
+              "SelectionPattern": "[\\s\\S]*\\[502\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 504,
+              "SelectionPattern": "([\\s\\S]*\\[504\\][\\s\\S]*)|(.*Task timed out after \\d+\\.\\d+ seconds$)",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            }
+          ]
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 200
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 400
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 401
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 403
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 404
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 422
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 500
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 502
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 504
+          }
+        ]
+      }
+    },
+    "ApiGatewayMethodPresentationPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePresentation"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CallDashforDashpapersDashapiLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          },
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{\"json\":$input.json(\"$\"), \"email\":\"$input.params(\"email\")\", \"presentationTitle\":\"$input.params(\"presentationTitle\")\", \\ \"presentationDescription\":\"$input.params(\"presentationDescription\")\" }",
+            "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $context.authorizer )\n    \"enhancedAuthContext\": $loop,\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop,\n\n    \"requestPath\": \"$context.resourcePath\"\n  }\n\n  "
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": 200,
+              "SelectionPattern": "",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 400,
+              "SelectionPattern": "[\\s\\S]*\\[400\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 401,
+              "SelectionPattern": "[\\s\\S]*\\[401\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 403,
+              "SelectionPattern": "[\\s\\S]*\\[403\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 404,
+              "SelectionPattern": "[\\s\\S]*\\[404\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 422,
+              "SelectionPattern": "[\\s\\S]*\\[422\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 500,
+              "SelectionPattern": "[\\s\\S]*(Process\\s?exited\\s?before\\s?completing\\s?request|\\[500\\])[\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 502,
+              "SelectionPattern": "[\\s\\S]*\\[502\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 504,
+              "SelectionPattern": "([\\s\\S]*\\[504\\][\\s\\S]*)|(.*Task timed out after \\d+\\.\\d+ seconds$)",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            }
+          ]
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 200
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 400
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 401
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 403
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 404
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 422
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 500
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 502
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 504
+          }
+        ]
+      }
+    },
+    "ApiGatewayMethodRegistrationIdVarDelete": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "DELETE",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceRegistrationIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "DeleteDashregistrationDashapiLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          },
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{\"json\":$input.json(\"$\"), \"registration_id\":\"$input.params(\"id\")\"}",
+            "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $context.authorizer )\n    \"enhancedAuthContext\": $loop,\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop,\n\n    \"requestPath\": \"$context.resourcePath\"\n  }\n\n  "
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": 200,
+              "SelectionPattern": "",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 400,
+              "SelectionPattern": "[\\s\\S]*\\[400\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 401,
+              "SelectionPattern": "[\\s\\S]*\\[401\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 403,
+              "SelectionPattern": "[\\s\\S]*\\[403\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 404,
+              "SelectionPattern": "[\\s\\S]*\\[404\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 422,
+              "SelectionPattern": "[\\s\\S]*\\[422\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 500,
+              "SelectionPattern": "[\\s\\S]*(Process\\s?exited\\s?before\\s?completing\\s?request|\\[500\\])[\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 502,
+              "SelectionPattern": "[\\s\\S]*\\[502\\][\\s\\S]*",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            },
+            {
+              "StatusCode": 504,
+              "SelectionPattern": "([\\s\\S]*\\[504\\][\\s\\S]*)|(.*Task timed out after \\d+\\.\\d+ seconds$)",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "ResponseTemplates": {}
+            }
+          ]
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 200
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 400
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 401
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 403
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 404
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 422
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 500
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 502
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "ResponseModels": {},
+            "StatusCode": 504
+          }
+        ]
+      }
+    },
+    "ApiGatewayDeployment1589957314737": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "StageName": "dev"
+      },
+      "DependsOn": [
+        "ApiGatewayMethodRegistrationOptions",
+        "ApiGatewayMethodPresentationOptions",
+        "ApiGatewayMethodRegistrationIdVarOptions",
+        "ApiGatewayMethodRegistrationPost",
+        "ApiGatewayMethodPresentationPost",
+        "ApiGatewayMethodRegistrationIdVarDelete"
+      ]
+    },
+    "AddDashguestDashregistrationDashapiLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AddDashguestDashregistrationDashapiLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "CallDashforDashpapersDashapiLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CallDashforDashpapersDashapiLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "DeleteDashregistrationDashapiLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "DeleteDashregistrationDashapiLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "ServerlessDaysCreateTableRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "serverlessDays-Warsaw-create-table",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:CreateTable"
+                  ],
+                  "Resource": [
+                    "*"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ServerlessDaysCreateBucketRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "serverlessDays-Warsaw-create-bucket",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:CreateBucket",
+                    "s3:PutObject"
+                  ],
+                  "Resource": [
+                    "*"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ServerlessDaysDeleteGuestRegistration": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "serverlessDays-Warsaw-delete-guest-registration",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem"
+                  ],
+                  "Resource": [
+                    "arn:aws:dynamodb:eu-central-1:583041644330:table/serverless-days-warsaw-guest-registration"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ServerlessDaysAddGuestRegistration": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "serverlessDays-Warsaw-add-guest-registration",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ses:SendEmail",
+                    "ses:SendTemplatedEmail",
+                    "ses:CreateTemplate",
+                    "ses:DeleteTemplate",
+                    "dynamodb:PutItem",
+                    "dynamodb:Scan"
+                  ],
+                  "Resource": [
+                    "*"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ServerlessDaysGenerateGuestsList": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "serverlessDays-Warsaw-generate-guests_list",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:PutObject"
+                  ],
+                  "Resource": [
+                    "arn:aws:s3:::serverless-days-warsaw-private-bucket",
+                    "arn:aws:s3:::serverless-days-warsaw-private-bucket/*"
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:Scan"
+                  ],
+                  "Resource": [
+                    "arn:aws:dynamodb:eu-central-1:583041644330:table/serverless-days-warsaw-guest-registration"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": {
+        "Ref": "ServerlessDeploymentBucket"
+      }
+    },
+    "AddDashguestDashregistrationDashapiLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AddDashguestDashregistrationDashapiLambdaVersionJvhHhBa7LnyMo152RCZft9QTItCCeZmmtjJhM4TDI"
+      }
+    },
+    "CallDashforDashpapersDashapiLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CallDashforDashpapersDashapiLambdaVersionKZA1AQsS2eELjCidoL2JWvqlnkO7NOi7s5ttcf4G0"
+      }
+    },
+    "CreateDashtableLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CreateDashtableLambdaVersionzBD9qiN6vrkdmfvtNWLcO7S4OUG19LjgtdMA7ZUTJY"
+      }
+    },
+    "CreateDashbucketLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CreateDashbucketLambdaVersionUSk5VtPyxb0sfQleikfwDrORaivpbJkjfFBC3y3n5A"
+      }
+    },
+    "DeleteDashregistrationDashapiLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "DeleteDashregistrationDashapiLambdaVersion94z7ktmRWrONFBvY0IUV8Jb4UYi7oGMuGLcbfcdlDYA"
+      }
+    },
+    "GenerateDashguestsDashlistLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "GenerateDashguestsDashlistLambdaVersionjzsbVIkLjhDX9Paeeg4nbys2Q5kWiTi3CYEFdFPQCY"
+      }
+    },
+    "SesDashtemplateLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "SesDashtemplateLambdaVersionDzPYauWsY0EDlJ8Jeofqo1ARgearVxIi08WDWtfwHc"
+      }
+    },
+    "ServiceEndpoint": {
+      "Description": "URL of the service endpoint",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayRestApi"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/dev"
+          ]
+        ]
+      }
+    }
+  }
+}
