@@ -24,15 +24,15 @@ baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
                     email:
                         description: Email
                         type: string
-                        example: "jan.kowalski@company.com"
+                        example: "jan.kowalski@softgame.com"
                     position:
                         description: Position in the organization
                         type: string
-                        example: "CEO"
+                        example: "Junior Software Developer"
                     organizationName:
                         description: Name of the organization
                         type: string
-                        example: "BestOrg"
+                        example: "SoftGame"
                     businessInterests:
                         description: 
                         type: list
@@ -47,9 +47,9 @@ baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
                         example: True
                 example: |
                     {
-                        "firstName": "Lui",
-                        "lastName": "Chak",
-                        "email": "lui.chak@softgame.com",
+                        "firstName": "Jan",
+                        "lastName": "Kowalski",
+                        "email": "jan.kowalski@company.com",
                         "position": "Junior Software Developer",
                         "organizationName": "SoftGame",
                         "businessInterests": ["Test"],
@@ -106,3 +106,63 @@ baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
                                     "statusCode": 400,
                                     "message" : "Client error"
                                 }
+/presentation:
+    description: |
+        A collection of presentations
+    post:
+        description: | 
+            Add a new presentation request and send a thank you email to the author.
+            Author must be registered as an event guest.
+        body:
+            application/json:
+                properties:
+                    email:
+                        description: Email of the author
+                        type: string
+                        example: "jankowalski@softgame.pl"
+                    presentationTitle:
+                        description: Title of presentation
+                        type: string
+                        example: "AWSome techniques to build your app!"
+                    presentationDescription:
+                        description: Description of presentation, maximum length is 400 characters.
+                        type: string
+                        example: "In my presentation I want to show some great tricks to youngsters 
+                            how to efficiently build their first application."
+                example: |
+                    {
+                        "email": "jan.kowalski@softgame.pl",
+                        "presentationTitle": "AWSome techniques to build your app!",
+                        "presentationDescription": "In my presentation I want to show some great tricks to youngsters 
+                            how to efficiently build their first application."
+                    }
+        responses:
+            200:
+                description: |
+                    The output contains the unique identifier of the message.
+                body:
+                    application/json:
+                        example: |
+                            {                    
+                                "statusCode": 200,
+                                "message": "Email sent! Message ID: 12345",
+                                "output": "12345"
+                            }
+            400:
+                body:
+                    application/json:
+                        example: |
+                            { 
+                                "statusCode": 400,
+                                "message" : "Client error or Param error",
+                                "output" : null 
+                            }
+            401:
+                body:
+                    application/json:
+                        example: |
+                            { 
+                                "statusCode": 409,
+                                "message" : "User has not registered for the event",
+                                "output" : null
+                            }
