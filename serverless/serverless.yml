@@ -60,6 +60,30 @@ functions:
               application/json: '{"json":$input.json("$"), "firstName":"$input.params("firstName")", "lastName":"$input.params("lastName")", \
                                   "email":"$input.params("email")", "position":"$input.params("position")", "organizationName":"$input.params("organizationName")", \
                                   "technicalInterests":"$input.params("technicalInterests")", "businessInterests":"$input.params("businessInterests")" }'
+  call-for-papers-api:
+    name: ${self:custom.service_acronym}-call-for-papers-api
+    description: Adds presentation to table call for papers
+    handler: functions/call_for_papers_api.handler
+    role: ServerlessDaysAddGuestRegistration
+    environment:
+        REGION: eu-central-1
+        TABLE_NAME: serverless-days-warsaw-guest-registration
+        TABLE_NAME1: serverless-days-warsaw-call-for-papers
+        TEMPLATE_NAME: ServerlessDays-Warsaw-2020-cfp
+    events:
+      - http:
+          path: presentation
+          method: post
+          integration: lambda
+          cors:
+              origin: "*"
+              headers: ${self:custom.allowed-headers}
+          origins:
+            - "*"
+          request:
+            template:
+              application/json: '{"json":$input.json("$"), "email":"$input.params("email")", "presentationTitle":"$input.params("presentationTitle")", \
+                                  "presentationDescription":"$input.params("presentationDescription")" }'
   create-table:
     name: ${self:custom.service_acronym}-create-table
     description: Creates a table that will store event guests

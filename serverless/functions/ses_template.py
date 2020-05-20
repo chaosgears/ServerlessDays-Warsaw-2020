@@ -34,9 +34,26 @@ def create_template():
 
     print(response)
 
+def create_template_thanks_for_cfp():
+    with open('functions/email_html_call_for_papers.html', 'r') as f:
+        html_string = f.read()
+
+    send_template = {
+        "TemplateName": "ServerlessDays-Warsaw-2020-cfp",
+        "SubjectPart": "Presentation confirmation!",
+        "TextPart": "Dear {{name}},\r\n.",
+        "HtmlPart": html_string
+    }
+
+    response = ses.create_template(
+        Template = send_template
+    )
+
+    print(response)
+
 def handler(event, context):
-    create_template()
-    # delete_template('ServerlessDays-Warsaw-2020')   
+    create_template_thanks_for_cfp()
+    # delete_template('ServerlessDays-Warsaw-2020-cfp')   
 
     response = {
         "statusCode": 200,
