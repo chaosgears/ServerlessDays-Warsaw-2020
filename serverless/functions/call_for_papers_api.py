@@ -157,6 +157,12 @@ def handler(event, context):
             #     reponse = update_item(email, presentation_title, presentation_description, registrationId) 
             #     if response["statusCode"] == 200:
             #         response = send_ses(email, first_name) 
+        else:
+             response =  {
+                "message" : "Guest canceled the registration",
+                "statusCode" : 409,
+                "output": None
+            } 
     else:
         response = guest_registration_response
 

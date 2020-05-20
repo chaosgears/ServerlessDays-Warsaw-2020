@@ -105,7 +105,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-add-guest-registration-api",
         "Handler": "functions/add_guest_registration_api.handler",
@@ -156,14 +156,14 @@
         "ServerlessDaysAddGuestRegistration"
       ]
     },
-    "AddDashguestDashregistrationDashapiLambdaVersionJvhHhBa7LnyMo152RCZft9QTItCCeZmmtjJhM4TDI": {
+    "AddDashguestDashregistrationDashapiLambdaVersionw74JeFwuZXzixiTJ9g4czheqEvu7swG21Hy90xFQQo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AddDashguestDashregistrationDashapiLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Adds guest registration to table guest_registration"
       }
     },
@@ -174,7 +174,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-call-for-papers-api",
         "Handler": "functions/call_for_papers_api.handler",
@@ -226,14 +226,14 @@
         "ServerlessDaysAddGuestRegistration"
       ]
     },
-    "CallDashforDashpapersDashapiLambdaVersionKZA1AQsS2eELjCidoL2JWvqlnkO7NOi7s5ttcf4G0": {
+    "CallDashforDashpapersDashapiLambdaVersionrGCApBYUjobRUw2xQfm1KA6hdVEpjJCaMXybLtLTg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CallDashforDashpapersDashapiLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Adds presentation to table call for papers"
       }
     },
@@ -244,7 +244,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-create-table",
         "Handler": "functions/create_table.handler",
@@ -295,14 +295,14 @@
         "ServerlessDaysCreateTableRole"
       ]
     },
-    "CreateDashtableLambdaVersionzBD9qiN6vrkdmfvtNWLcO7S4OUG19LjgtdMA7ZUTJY": {
+    "CreateDashtableLambdaVersionxA2wQm07k28hbMwX2NCmiWxsB0xH5aqHqAUpoHkH5EA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateDashtableLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Creates a table that will store event guests"
       }
     },
@@ -313,7 +313,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-create-bucket",
         "Handler": "functions/create_bucket.handler",
@@ -364,14 +364,14 @@
         "ServerlessDaysCreateBucketRole"
       ]
     },
-    "CreateDashbucketLambdaVersionUSk5VtPyxb0sfQleikfwDrORaivpbJkjfFBC3y3n5A": {
+    "CreateDashbucketLambdaVersionoO7MZXWrYMxUCdT6Nyfuw2sKkk4Dtuqm3gDtrGhVAw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateDashbucketLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Creates a bucket in which the user list file will be stored"
       }
     },
@@ -382,7 +382,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-delete-registration-api",
         "Handler": "functions/delete_registration_api.handler",
@@ -432,14 +432,14 @@
         "ServerlessDaysDeleteGuestRegistration"
       ]
     },
-    "DeleteDashregistrationDashapiLambdaVersion94z7ktmRWrONFBvY0IUV8Jb4UYi7oGMuGLcbfcdlDYA": {
+    "DeleteDashregistrationDashapiLambdaVersionSQ4YyN0WHOrktuhxt1dRFKHJPfLyqkADMNCIDPHqI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteDashregistrationDashapiLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Removes registration from database"
       }
     },
@@ -450,7 +450,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-generate-guests-list-api",
         "Handler": "functions/generate_guests_list_csv_api.handler",
@@ -501,14 +501,14 @@
         "ServerlessDaysGenerateGuestsList"
       ]
     },
-    "GenerateDashguestsDashlistLambdaVersionjzsbVIkLjhDX9Paeeg4nbys2Q5kWiTi3CYEFdFPQCY": {
+    "GenerateDashguestsDashlistLambdaVersionbSqxMv1PgOsSNIpKF6OIFQxUZm5pwNK3Mt4DMEmU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GenerateDashguestsDashlistLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Generate list of guests that registrated to event in .csv format and put it to s3 bucket"
       }
     },
@@ -519,7 +519,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589957316196-2020-05-20T06:48:36.196Z/serverlessDays-Warsaw-guest-registration.zip"
+          "S3Key": "serverless/serverlessDays-Warsaw-guest-registration/dev/1589964212290-2020-05-20T08:43:32.290Z/serverlessDays-Warsaw-guest-registration.zip"
         },
         "FunctionName": "serverlessDays-Warsaw-ses-tempate",
         "Handler": "functions/ses_template.handler",
@@ -568,14 +568,14 @@
         "ServerlessDaysAddGuestRegistration"
       ]
     },
-    "SesDashtemplateLambdaVersionDzPYauWsY0EDlJ8Jeofqo1ARgearVxIi08WDWtfwHc": {
+    "SesDashtemplateLambdaVersionaPhtqThHG3khQf3wgKjiyL2EfL2MwiJZlyo0pjme9x4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SesDashtemplateLambdaFunction"
         },
-        "CodeSha256": "61bDWehp/mgsldASAElsuMDP70ZTuOgDBc3dwawhZuA=",
+        "CodeSha256": "r1SFqG1V8AL7R8WyL+nZCBlEmZJO5ZyxfA3CVIJ7UjY=",
         "Description": "Create and delete ses template"
       }
     },
@@ -809,7 +809,7 @@
           },
           "PassthroughBehavior": "NEVER",
           "RequestTemplates": {
-            "application/json": "{\"json\":$input.json(\"$\"), \"firstName\":\"$input.params(\"firstName\")\", \"lastName\":\"$input.params(\"lastName\")\", \\ \"email\":\"$input.params(\"email\")\", \"position\":\"$input.params(\"position\")\", \"organizationName\":\"$input.params(\"organizationName\")\", \\ \"technicalInterests\":\"$input.params(\"technicalInterests\")\", \"businessInterests\":\"$input.params(\"businessInterests\")\" }",
+            "application/json": "{\"json\":$input.json(\"$\"), \"firstName\":\"$input.params(\"firstName\")\", \"lastName\":\"$input.params(\"lastName\")\",  \"email\":\"$input.params(\"email\")\", \"position\":\"$input.params(\"position\")\", \"organizationName\":\"$input.params(\"organizationName\")\",  \"technicalInterests\":\"$input.params(\"technicalInterests\")\", \"businessInterests\":\"$input.params(\"businessInterests\")\" }",
             "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $context.authorizer )\n    \"enhancedAuthContext\": $loop,\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop,\n\n    \"requestPath\": \"$context.resourcePath\"\n  }\n\n  "
           },
           "IntegrationResponses": [
@@ -995,7 +995,7 @@
           },
           "PassthroughBehavior": "NEVER",
           "RequestTemplates": {
-            "application/json": "{\"json\":$input.json(\"$\"), \"email\":\"$input.params(\"email\")\", \"presentationTitle\":\"$input.params(\"presentationTitle\")\", \\ \"presentationDescription\":\"$input.params(\"presentationDescription\")\" }",
+            "application/json": "{\"json\":$input.json(\"$\"), \"email\":\"$input.params(\"email\")\", \"presentationTitle\":\"$input.params(\"presentationTitle\")\",  \"presentationDescription\":\"$input.params(\"presentationDescription\")\" }",
             "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $context.authorizer )\n    \"enhancedAuthContext\": $loop,\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop,\n\n    \"requestPath\": \"$context.resourcePath\"\n  }\n\n  "
           },
           "IntegrationResponses": [
@@ -1326,7 +1326,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1589957314737": {
+    "ApiGatewayDeployment1589964210620": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1686,43 +1686,43 @@
     "AddDashguestDashregistrationDashapiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AddDashguestDashregistrationDashapiLambdaVersionJvhHhBa7LnyMo152RCZft9QTItCCeZmmtjJhM4TDI"
+        "Ref": "AddDashguestDashregistrationDashapiLambdaVersionw74JeFwuZXzixiTJ9g4czheqEvu7swG21Hy90xFQQo"
       }
     },
     "CallDashforDashpapersDashapiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CallDashforDashpapersDashapiLambdaVersionKZA1AQsS2eELjCidoL2JWvqlnkO7NOi7s5ttcf4G0"
+        "Ref": "CallDashforDashpapersDashapiLambdaVersionrGCApBYUjobRUw2xQfm1KA6hdVEpjJCaMXybLtLTg"
       }
     },
     "CreateDashtableLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateDashtableLambdaVersionzBD9qiN6vrkdmfvtNWLcO7S4OUG19LjgtdMA7ZUTJY"
+        "Ref": "CreateDashtableLambdaVersionxA2wQm07k28hbMwX2NCmiWxsB0xH5aqHqAUpoHkH5EA"
       }
     },
     "CreateDashbucketLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateDashbucketLambdaVersionUSk5VtPyxb0sfQleikfwDrORaivpbJkjfFBC3y3n5A"
+        "Ref": "CreateDashbucketLambdaVersionoO7MZXWrYMxUCdT6Nyfuw2sKkk4Dtuqm3gDtrGhVAw"
       }
     },
     "DeleteDashregistrationDashapiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteDashregistrationDashapiLambdaVersion94z7ktmRWrONFBvY0IUV8Jb4UYi7oGMuGLcbfcdlDYA"
+        "Ref": "DeleteDashregistrationDashapiLambdaVersionSQ4YyN0WHOrktuhxt1dRFKHJPfLyqkADMNCIDPHqI"
       }
     },
     "GenerateDashguestsDashlistLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GenerateDashguestsDashlistLambdaVersionjzsbVIkLjhDX9Paeeg4nbys2Q5kWiTi3CYEFdFPQCY"
+        "Ref": "GenerateDashguestsDashlistLambdaVersionbSqxMv1PgOsSNIpKF6OIFQxUZm5pwNK3Mt4DMEmU"
       }
     },
     "SesDashtemplateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SesDashtemplateLambdaVersionDzPYauWsY0EDlJ8Jeofqo1ARgearVxIi08WDWtfwHc"
+        "Ref": "SesDashtemplateLambdaVersionaPhtqThHG3khQf3wgKjiyL2EfL2MwiJZlyo0pjme9x4"
       }
     },
     "ServiceEndpoint": {

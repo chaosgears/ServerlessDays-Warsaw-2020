@@ -57,8 +57,8 @@ functions:
             - "*"
           request:
             template:
-              application/json: '{"json":$input.json("$"), "firstName":"$input.params("firstName")", "lastName":"$input.params("lastName")", \
-                                  "email":"$input.params("email")", "position":"$input.params("position")", "organizationName":"$input.params("organizationName")", \
+              application/json: '{"json":$input.json("$"), "firstName":"$input.params("firstName")", "lastName":"$input.params("lastName")", 
+                                  "email":"$input.params("email")", "position":"$input.params("position")", "organizationName":"$input.params("organizationName")", 
                                   "technicalInterests":"$input.params("technicalInterests")", "businessInterests":"$input.params("businessInterests")" }'
   call-for-papers-api:
     name: ${self:custom.service_acronym}-call-for-papers-api
@@ -82,7 +82,7 @@ functions:
             - "*"
           request:
             template:
-              application/json: '{"json":$input.json("$"), "email":"$input.params("email")", "presentationTitle":"$input.params("presentationTitle")", \
+              application/json: '{"json":$input.json("$"), "email":"$input.params("email")", "presentationTitle":"$input.params("presentationTitle")", 
                                   "presentationDescription":"$input.params("presentationDescription")" }'
   create-table:
     name: ${self:custom.service_acronym}-create-table

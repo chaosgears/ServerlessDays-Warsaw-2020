@@ -146,9 +146,7 @@ def put_item(first_name, last_name, position, email, organization_name, business
                     'email': email,
                     'businessInterests': business_interests,
                     'technicalInterests': technical_interests ,
-                    'isCanceled': {
-                        'BOOL': False
-                    }
+                    'isCanceled': False
                 }
         )
 

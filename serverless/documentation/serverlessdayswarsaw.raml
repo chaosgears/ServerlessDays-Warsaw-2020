@@ -162,7 +162,16 @@ baseUri: https://1gxq5w09z7.execute-api.eu-central-1.amazonaws.com/dev/
                     application/json:
                         example: |
                             { 
-                                "statusCode": 409,
+                                "statusCode": 401,
                                 "message" : "User has not registered for the event",
+                                "output" : null
+                            }
+            409:
+                body:
+                    application/json:
+                        example: |
+                            { 
+                                "statusCode": 409,
+                                "message" : "Guest canceled the registration",
                                 "output" : null
                             }
